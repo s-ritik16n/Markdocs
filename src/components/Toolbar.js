@@ -18,6 +18,7 @@ export default class Toolbar extends React.Component {
         <Button text="Code block" />
         <Button text="Code" />
         <Button text="Blockquote" />
+        <Button text="Clear Text" />
       </div>
     );
   }
