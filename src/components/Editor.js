@@ -5,10 +5,10 @@ export default class Editor extends React.Component {
   constructor(props){
     super(props);
   }
-  
+
   render = () => {
     return (
-      <div>Editor Component</div>
+      <input type="textarea" />
     );
   }
 }

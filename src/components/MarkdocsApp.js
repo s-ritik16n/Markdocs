@@ -10,7 +10,7 @@ export default class MarkdocsApp extends React.Component {
       <div>
         <Toolbar />
         <Editor />
-        <Preview />
+        <Preview value={"sample"}/>
       </div>
     );
   }
