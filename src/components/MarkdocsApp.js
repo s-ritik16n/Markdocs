@@ -3,20 +3,27 @@ import ReactDOM from 'react-dom';
 import Toolbar from './Toolbar';
 import Editor from './Editor';
 import Preview from './Preview';
-import { preview } form './advanced-utils';
+import { preview } from '../advanced-utils';
 
 export default class MarkdocsApp extends React.Component {
 
-  previewHandler(event, text) => {
+  constructor(pros) {
+    super(props);
+    this.refs.preview.classlist.add("hide");
+    this.modData = null;
+  }
+
+  previewHandler = (event, data) => {
+
     event.preventDefault();
     console.log("previewHandler");
 
     let previewEl = event.target;
-    previewEl.toggleClass("show");
+    previewEl.toggleClass("hide");
 
-    if(previewEl.classlist.contains("show")) {
+    if(!previewEl.classlist.contains("hide")) {
       this.refs.editor.classlist.add("hide");
-      preview(event, text);
+      this.modData = preview(data);
     } else {
       this.refs.editor.classlist.remove("hide");
     }
@@ -27,7 +34,8 @@ export default class MarkdocsApp extends React.Component {
       <div>
         <Toolbar />
         <Editor ref="editor"/>
-        <Button text="Preview" onCLick={(e) => this.previewHandler(event, text);}/>
+        <Button text="Preview" handleClick={this.previewHandler} data="data"/>
+        <Preview ref="preview" value={this.modData} />
       </div>
     );
   }
