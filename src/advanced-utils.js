@@ -1,3 +1,4 @@
-export const preview = (event, text) => {
+export const preview = (text) => {
   console.log(text);
+  return text;
 }
