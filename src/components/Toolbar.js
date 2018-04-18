@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Button from './Button';
 import * as utils from '../utils';
+import { ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 
 export default class Toolbar extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ export default class Toolbar extends React.Component {
 
   render = () => {
     return (
-      <div>
+      <ButtonToolbar>
+      <ButtonGroup>
         <Button text="cut" handleClick={utils.cut} data={this.props.data}/>
         <Button text="copy" handleClick={utils.copy} data={this.props.data}/>
         <Button text="paste" handleClick={utils.paste} data={this.props.data}/>
@@ -24,7 +26,8 @@ export default class Toolbar extends React.Component {
         <Button text="Code" handleClick={utils.code} data={this.props.data}/>
         <Button text="Blockquote" handleClick={utils.blockQuote} data={this.props.data}/>
         <Button text="Clear Text" handleClick={utils.clearText} data={this.props.data}/>
-      </div>
+      </ButtonGroup>
+    </ButtonToolbar>
     );
   }
 }
