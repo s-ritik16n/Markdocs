@@ -23,25 +23,17 @@ export default class MarkdocsApp extends React.Component {
     console.log(this.state);
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-    if(this.state.showPreview) {
-      this.state.parsedData = preview(this.state.rawData);
-    }
-  }
-
   previewHandler = (event, data) => {
 
     event.preventDefault();
     this.setState((prevState) => {
-      return {showPreview: !prevState.showPreview}
+      return {showPreview: !prevState.showPreview, parsedData: prevState.showPreview === false ? preview(prevState.rawData) : {}};
     });
-
   }
 
   render = () => {
     return (
-      <div>
+      <div className="container-fluid">
         <Toolbar />
         <Editor hide={!(this.state.showPreview)}/>
         <Button text="Preview" handleClick={this.previewHandler} data={this.state.rawData}/>
