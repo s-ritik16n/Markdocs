@@ -8,7 +8,9 @@ export default class Editor extends React.Component {
 
   render = () => {
     return (
-      <input type="textarea" />
+      <div>
+        {this.props.hide && <input id="editor" ref="editor" type="textarea" />}
+      </div>
     );
   }
 }

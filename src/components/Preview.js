@@ -8,7 +8,9 @@ export default class Preview extends React.Component {
 
   render = () => {
     return (
-      <div>{this.props.value || ""}</div>
+      <div>
+        {this.props.hide && <div ref="preview">{this.props.value || ""}</div>}
+      </div>
     );
   }
 }

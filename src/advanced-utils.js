@@ -1,4 +1,4 @@
 export const preview = (text) => {
   console.log(text);
-  return text;
+  return "returned data from preview function";
 }

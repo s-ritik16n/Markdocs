@@ -3,39 +3,49 @@ import ReactDOM from 'react-dom';
 import Toolbar from './Toolbar';
 import Editor from './Editor';
 import Preview from './Preview';
+import Button from './Button';
 import { preview } from '../advanced-utils';
 
 export default class MarkdocsApp extends React.Component {
 
-  constructor(pros) {
+  state = {
+    rawData: "data",
+    parsedData: "parsed data",
+    showPreview: false
+  }
+
+  constructor(props) {
     super(props);
-    this.refs.preview.classlist.add("hide");
-    this.modData = null;
+    this.previewHandler = this.previewHandler.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(this.state);
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+    if(this.state.showPreview) {
+      this.state.parsedData = preview(this.state.rawData);
+    }
   }
 
   previewHandler = (event, data) => {
 
     event.preventDefault();
-    console.log("previewHandler");
+    this.setState((prevState) => {
+      return {showPreview: !prevState.showPreview}
+    });
 
-    let previewEl = event.target;
-    previewEl.toggleClass("hide");
-
-    if(!previewEl.classlist.contains("hide")) {
-      this.refs.editor.classlist.add("hide");
-      this.modData = preview(data);
-    } else {
-      this.refs.editor.classlist.remove("hide");
-    }
   }
 
   render = () => {
     return (
       <div>
         <Toolbar />
-        <Editor ref="editor"/>
-        <Button text="Preview" handleClick={this.previewHandler} data="data"/>
-        <Preview ref="preview" value={this.modData} />
+        <Editor hide={!(this.state.showPreview)}/>
+        <Button text="Preview" handleClick={this.previewHandler} data={this.state.rawData}/>
+        <Preview hide={this.state.showPreview} id="preview" value={this.state.parsedData} />
       </div>
     );
   }
