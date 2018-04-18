@@ -10,17 +10,13 @@ export default class MarkdocsApp extends React.Component {
 
   state = {
     rawData: "data",
-    parsedData: "parsed data",
+    parsedData: "",
     showPreview: false
   }
 
   constructor(props) {
     super(props);
     this.previewHandler = this.previewHandler.bind(this);
-  }
-
-  componentDidMount() {
-    console.log(this.state);
   }
 
   previewHandler = (event, data) => {
