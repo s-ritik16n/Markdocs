@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button as Btn } from 'react-bootstrap';
+import { Button as Btn } from 'reactstrap';
 
 export default class Button extends React.Component {
   constructor(props){
@@ -9,7 +9,7 @@ export default class Button extends React.Component {
 
   render = () => {
     return (
-      <Btn bsStyle="default" onClick={(e) => {this.props.handleClick(e, this.props.data)}}>{this.props.text}</Btn>
+      <Btn color="default" onClick={(e) => {this.props.handleClick(e, this.props.data)}}>{this.props.text}</Btn>
     );
   }
 }

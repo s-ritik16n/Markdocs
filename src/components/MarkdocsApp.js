@@ -5,6 +5,7 @@ import Editor from './Editor';
 import Preview from './Preview';
 import Button from './Button';
 import { preview } from '../advanced-utils';
+import ToggleButton from './ToggleButton';
 
 export default class MarkdocsApp extends React.Component {
 
