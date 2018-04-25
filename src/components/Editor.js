@@ -9,7 +9,7 @@ export default class Editor extends React.Component {
   render = () => {
     return (
       <div>
-        {this.props.hide && <textarea id="editor" ref="editor"></textarea>}
+        <textarea id="editor" ref="editor"></textarea>
       </div>
     );
   }

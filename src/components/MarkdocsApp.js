@@ -32,7 +32,7 @@ export default class MarkdocsApp extends React.Component {
     return (
       <div className="container-fluid">
         <Toolbar />
-        <Editor hide={!(this.state.showPreview)}/>
+        <Editor/>
         <Button text="Preview" handleClick={this.previewHandler} data={this.state.rawData}/>
         <Preview hide={this.state.showPreview} id="preview" value={this.state.parsedData} />
       </div>
