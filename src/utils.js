@@ -22,7 +22,11 @@ export const image = (event, text) => {
   console.log(text);
 }
 
-export const lists = (event, text) => {
+export const ulList = (event, text) => {
+  console.log(text);
+}
+
+export const olList = (event, text) => {
   console.log(text);
 }
 
@@ -30,11 +34,7 @@ export const table = (event, text) => {
   console.log(text);
 }
 
-export const lineBreak = (event, text) => {
-  console.log(text);
-}
-
-export const codeBlock = (event, text) => {
+export const rule = (event, text) => {
   console.log(text);
 }
 
@@ -42,7 +42,19 @@ export const code = (event, text) => {
   console.log(text);
 }
 
+export const codeBlock = (event, text) => {
+  console.log(text);
+}
+
 export const blockQuote = (event, text) => {
+  console.log(text);
+}
+
+export const copy = (event, text) => {
+  console.log(text);
+}
+
+export const download = (event, text) => {
   console.log(text);
 }
 

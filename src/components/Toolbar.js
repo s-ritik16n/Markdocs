@@ -1,62 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GlyphButton from './GlyphButton';
+import Button from './Button';
 import * as utils from '../utils';
-import {ButtonGroup, ButtonToolbar} from 'react-bootstrap';
-import {Button} from './Button';
-import {Button as Btn} from 'react-bootstrap';
-import {
-  FaBold,
-  FaItalic,
-  FaHeader,
-  FaChain,
-  FaFileImageO,
-  FaListUl,
-  FaListOl,
-  FaTable,
-  FaEllipsisH,
-  FaFileCodeO,
-  FaIndent
-} from 'react-icons/lib/fa';
-import {
-  MdClearAll,
-  MdCode,
-  MdContentCopy,
-  MdFileDownload
-} from 'react-icons/lib/md';
+import { ButtonGroup, ButtonToolbar } from 'react-bootstrap';
+import { Button as Btn } from 'react-bootstrap';
+
 
 export default class Toolbar extends React.Component {
   constructor(props) {
     super(props);
   }
 
+
   render = () => {
-    return (<ButtonToolbar>
+    return (
+
+      <ButtonToolbar>
       <ButtonGroup>
-        <Btn bsStyle="default"><FaBold/></Btn>
-        <Btn bsStyle="default"><FaItalic/></Btn>
+        <Button handleClick={utils.bold} toolTip="Strong Text" data={this.props.data} icon="FaBold"/>
+        <Button handleClick={utils.italic} toolTip="Italic Text" data={this.props.data} icon="FaItalic"/>
       </ButtonGroup>
       <ButtonGroup>
-        <Btn bsStyle="default"><FaHeader/></Btn>
-        <Btn bsStyle="default"><FaChain/></Btn>
-        <Btn bsStyle="default"><FaTable/></Btn>
-        <Btn bsStyle="default"><FaEllipsisH/></Btn>
-        <Btn bsStyle="default"><FaIndent/></Btn>
-        <Btn bsStyle="default"><FaFileImageO/></Btn>
+        <Button handleClick={utils.headers} toolTip="Headers" data={this.props.data} icon="FaHeader"/>
+        <Button handleClick={utils.link} toolTip="Link" data={this.props.data} icon="FaChain"/>
+        <Button handleClick={utils.table} toolTip="Table" data={this.props.data} icon="FaTable"/>
+        <Button handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon="FaEllipsisH"/>
+        <Button handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon="FaIndent"/>
+        <Button handleClick={utils.image} toolTip="Image" data={this.props.data} icon="FaFileImageO"/>
       </ButtonGroup>
       <ButtonGroup>
-        <Btn bsStyle="default"><FaListUl/></Btn>
-        <Btn bsStyle="default"><FaListOl/></Btn>
+        <Button handleClick={utils.ulList} toolTip="Unordered List" data={this.props.data} icon="FaListUl"/>
+        <Button handleClick={utils.olList} toolTip="Ordered List" data={this.props.data} icon="FaListOl"/>
       </ButtonGroup>
       <ButtonGroup>
-        <Btn bsStyle="default"><MdCode/></Btn>
-        <Btn bsStyle="default"><FaFileCodeO/></Btn>
+        <Button handleClick={utils.code} toolTip="Code" data={this.props.data} icon="MdCode"/>
+        <Button handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon="FaFileCodeO"/>
       </ButtonGroup>
       <ButtonGroup>
-        <Btn bsStyle="default"><MdContentCopy/></Btn>
-        <Btn bsStyle="default"><MdClearAll/></Btn>
-        <Btn bsStyle="default"><MdFileDownload/></Btn>
+        <Button handleClick={utils.copy} toolTip="Copy" data={this.props.data} icon="MdContentCopy"/>
+        <Button handleClick={utils.clearText} toolTip="Clear" data={this.props.data} icon="MdClearAll"/>
+        <Button handleClick={utils.download} toolTip="Download" data={this.props.data} icon="MdFileDownload"/>
       </ButtonGroup>
-    </ButtonToolbar>);
+    </ButtonToolbar>
+);
   }
 }

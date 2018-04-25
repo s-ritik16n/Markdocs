@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { FormControl } from 'react-bootstrap';
 
 export default class Editor extends React.Component {
-  
+
   editorContainer = {
     height: "82vh"
   }
