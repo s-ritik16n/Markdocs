@@ -1,12 +1,12 @@
-export const copy = (event, text) => {
+export const bold = (event, text) => {
   console.log(text);
 }
 
-export const cut = (event, text) => {
+export const italic = (event, text) => {
   console.log(text);
 }
 
-export const paste = (event, text) => {
+export const underline = (event, text) => {
   console.log(text);
 }
 

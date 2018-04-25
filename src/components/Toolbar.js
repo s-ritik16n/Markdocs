@@ -1,8 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from './Button';
+import GlyphButton from './GlyphButton';
 import * as utils from '../utils';
 import {ButtonGroup, ButtonToolbar} from 'react-bootstrap';
+import {Button} from './Button';
+import {Button as Btn} from 'react-bootstrap';
+import {
+  FaBold,
+  FaItalic,
+  FaHeader,
+  FaChain,
+  FaFileImageO,
+  FaListUl,
+  FaListOl,
+  FaTable,
+  FaEllipsisH,
+  FaFileCodeO,
+  FaIndent
+} from 'react-icons/lib/fa';
+import {
+  MdClearAll,
+  MdCode,
+  MdContentCopy,
+  MdFileDownload
+} from 'react-icons/lib/md';
 
 export default class Toolbar extends React.Component {
   constructor(props) {
@@ -10,24 +31,32 @@ export default class Toolbar extends React.Component {
   }
 
   render = () => {
-    return (
-      <ButtonToolbar>
-        <ButtonGroup>
-          <Button text="cut" handleClick={utils.cut} data={this.props.data}/>
-          <Button text="copy" handleClick={utils.copy} data={this.props.data}/>
-          <Button text="paste" handleClick={utils.paste} data={this.props.data}/>
-          <Button text="headers" handleClick={utils.headers} data={this.props.data}/>
-          <Button text="link" handleClick={utils.link} data={this.props.data}/>
-          <Button text="image" handleClick={utils.image} data={this.props.data}/>
-          <Button text="lists" handleClick={utils.lists} data={this.props.data}/>
-          <Button text="table" handleClick={utils.table} data={this.props.data}/>
-          <Button text="line break" handleClick={utils.lineBreak} data={this.props.data}/>
-          <Button text="Code block" handleClick={utils.codeBlock} data={this.props.data}/>
-          <Button text="Code" handleClick={utils.code} data={this.props.data}/>
-          <Button text="Blockquote" handleClick={utils.blockQuote} data={this.props.data}/>
-          <Button text="Clear Text" handleClick={utils.clearText} data={this.props.data}/>
-        </ButtonGroup>
-      </ButtonToolbar>
-    );
+    return (<ButtonToolbar>
+      <ButtonGroup>
+        <Btn bsStyle="default"><FaBold/></Btn>
+        <Btn bsStyle="default"><FaItalic/></Btn>
+      </ButtonGroup>
+      <ButtonGroup>
+        <Btn bsStyle="default"><FaHeader/></Btn>
+        <Btn bsStyle="default"><FaChain/></Btn>
+        <Btn bsStyle="default"><FaTable/></Btn>
+        <Btn bsStyle="default"><FaEllipsisH/></Btn>
+        <Btn bsStyle="default"><FaIndent/></Btn>
+        <Btn bsStyle="default"><FaFileImageO/></Btn>
+      </ButtonGroup>
+      <ButtonGroup>
+        <Btn bsStyle="default"><FaListUl/></Btn>
+        <Btn bsStyle="default"><FaListOl/></Btn>
+      </ButtonGroup>
+      <ButtonGroup>
+        <Btn bsStyle="default"><MdCode/></Btn>
+        <Btn bsStyle="default"><FaFileCodeO/></Btn>
+      </ButtonGroup>
+      <ButtonGroup>
+        <Btn bsStyle="default"><MdContentCopy/></Btn>
+        <Btn bsStyle="default"><MdClearAll/></Btn>
+        <Btn bsStyle="default"><MdFileDownload/></Btn>
+      </ButtonGroup>
+    </ButtonToolbar>);
   }
 }

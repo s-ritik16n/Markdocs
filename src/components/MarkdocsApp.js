@@ -6,6 +6,9 @@ import Preview from './Preview';
 import Button from './Button';
 import { preview } from '../advanced-utils';
 import ToggleButton from './ToggleButton';
+import FaBold from 'react-icons/lib/fa/bolt';
+import {Button as Btn} from 'react-bootstrap';
+
 
 export default class MarkdocsApp extends React.Component {
 
@@ -32,8 +35,8 @@ export default class MarkdocsApp extends React.Component {
     return (
       <div className="container-fluid">
         <Toolbar />
-        <Editor/>
-        <Button text="Preview" handleClick={this.previewHandler} data={this.state.rawData}/>
+        <Btn bsStyle="default" onClick={this.previewHandler}><FaBold/></Btn>
+        <Editor />
         <Preview hide={this.state.showPreview} id="preview" value={this.state.parsedData} />
       </div>
     );
