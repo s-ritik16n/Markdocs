@@ -9,11 +9,6 @@ export const italic = (event, text, cb) => {
   cb(text);
 }
 
-export const underline = (event, text, cb) => {
-  console.log(text);
-  cb(text);
-}
-
 export const headers = (event, text, cb) => {
   console.log(text);
   cb(text);
