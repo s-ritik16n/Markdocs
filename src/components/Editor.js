@@ -13,7 +13,9 @@ export default class Editor extends React.Component {
   }
 
   editorStyle = {
-    height: "100%"
+    height: "100%",
+    width : "100%",
+    padding: "8px"
   }
 
   componentDidUpdate = () => {
@@ -21,12 +23,11 @@ export default class Editor extends React.Component {
     this.refs.textareaRef.value = this.props.data;
   }
 
-
   render = () => {
     return (<div style={this.editorContainer}>
-      <form>
-        <textarea onChange={(e)=>{this.props.handleChangeEvent(this.refs.textareaRef)}} ref="textareaRef" placeholder="textarea" style={this.editorStyle}></textarea>
-      </form>
+      <textarea onChange={(e) => {
+          this.props.handleChangeEvent(this.refs.textareaRef)
+        }} ref="textareaRef" placeholder="textarea" style={this.editorStyle}></textarea>
     </div>);
   }
 }
