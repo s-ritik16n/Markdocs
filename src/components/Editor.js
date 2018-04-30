@@ -21,6 +21,7 @@ export default class Editor extends React.Component {
   componentDidUpdate = () => {
     console.log("componentDidUpdate - ");
     this.refs.textareaRef.value = this.props.data;
+    this.refs.textareaRef.focus();
   }
 
   render = () => {
