@@ -8,10 +8,6 @@ export default class Editor extends React.Component {
     super(props);
   }
 
-  // state = {
-  //   value:
-  // }
-
   editorContainer = {
     height: "82vh"
   }
@@ -20,14 +16,9 @@ export default class Editor extends React.Component {
     height: "100%"
   }
 
-  // changeHandler = () => {
-  //   this.setState({value: this.textareaRef.value})
-  // }
-
   componentDidUpdate = () => {
-    console.log("Component update");
+    console.log("componentDidUpdate - ");
     this.refs.textareaRef.value = this.props.data;
-    console.log(this.refs.textareaRef.value);
   }
 
 
