@@ -1,5 +1,7 @@
-export const bold = (event, text) => {
+export const bold = (event, text, cb) => {
+  text = `${text} **<text_here>**`;
   console.log(text);
+  cb(text);
 }
 
 export const italic = (event, text) => {

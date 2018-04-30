@@ -1,25 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { FormControl } from 'react-bootstrap';
+import {FormControl} from 'react-bootstrap';
 
 export default class Editor extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  // state = {
+  //   value:
+  // }
 
   editorContainer = {
     height: "82vh"
   }
 
-  editorStyle= {
+  editorStyle = {
     height: "100%"
   }
-  constructor(props){
-    super(props);
+
+  // changeHandler = () => {
+  //   this.setState({value: this.textareaRef.value})
+  // }
+
+  componentDidUpdate = () => {
+    console.log("Component update");
+    this.refs.textareaRef.value = this.props.data;
+    console.log(this.refs.textareaRef.value);
   }
 
+
   render = () => {
-    return (
-      <div style={this.editorContainer}>
-      <FormControl componentClass="textarea" placeholder="textarea" style={this.editorStyle} />
-      </div>
-    );
+    return (<div style={this.editorContainer}>
+      <form>
+        <textarea onChange={(e)=>{this.props.handleChangeEvent(this.refs.textareaRef)}} ref="textareaRef" placeholder="textarea" style={this.editorStyle}></textarea>
+      </form>
+    </div>);
   }
 }
