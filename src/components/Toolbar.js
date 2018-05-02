@@ -3,26 +3,34 @@ import ReactDOM from 'react-dom';
 import GlyphButton from './GlyphButton';
 import Button from './Button';
 import * as utils from '../utils';
-import { ButtonGroup, ButtonToolbar } from 'react-bootstrap';
-import { Button as Btn } from 'react-bootstrap';
-
+import {ButtonGroup, ButtonToolbar} from 'react-bootstrap';
+import {Button as Btn} from 'react-bootstrap';
+import {DropdownButton, MenuItem} from 'react-bootstrap';
 
 export default class Toolbar extends React.Component {
   constructor(props) {
     super(props);
   }
 
-
   render = () => {
-    return (
-
-      <ButtonToolbar>
+    return (<ButtonToolbar>
       <ButtonGroup>
         <Button callback={this.props.callback} handleClick={utils.bold} toolTip="Strong Text" data={this.props.data} icon="FaBold"/>
         <Button callback={this.props.callback} handleClick={utils.italic} toolTip="Italic Text" data={this.props.data} icon="FaItalic"/>
       </ButtonGroup>
       <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.headers} toolTip="Headers" data={this.props.data} icon="FaHeader"/>
+        <DropdownButton bsStyle="primary" key="dropdown-header" title="Header" id={`split-button-basic-0`}>
+          <MenuItem>
+            <Button eventKey="1" handleClick={utils.headers} toolTip="h1" data={this.props.data} callback={this.props.callback}>
+              H1
+            </Button>
+          </MenuItem>
+          <MenuItem eventKey="2">H2</MenuItem>
+          <MenuItem eventKey="3">H3</MenuItem>
+          <MenuItem eventKey="4">H4</MenuItem>
+          <MenuItem eventKey="5">H5</MenuItem>
+          <MenuItem eventKey="6">H6</MenuItem>
+        </DropdownButton>
         <Button callback={this.props.callback} handleClick={utils.link} toolTip="Link" data={this.props.data} icon="FaChain"/>
         <Button callback={this.props.callback} handleClick={utils.table} toolTip="Table" data={this.props.data} icon="FaTable"/>
         <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon="FaEllipsisH"/>
@@ -42,7 +50,6 @@ export default class Toolbar extends React.Component {
         <Button callback={this.props.callback} handleClick={utils.clearText} toolTip="Clear" data={this.props.data} icon="MdClearAll"/>
         <Button callback={this.props.callback} handleClick={utils.download} toolTip="Download" data={this.props.data} icon="MdFileDownload"/>
       </ButtonGroup>
-    </ButtonToolbar>
-);
+    </ButtonToolbar>);
   }
 }

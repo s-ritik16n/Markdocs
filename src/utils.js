@@ -9,7 +9,7 @@ export const italic = (event, text, cb) => {
 }
 
 export const headers = (event, text, cb) => {
-  console.log("headers util - pending");
+  text += text.length > 0 ? " # " : "# ";
   cb(text);
 }
 
