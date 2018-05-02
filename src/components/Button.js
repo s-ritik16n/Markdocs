@@ -89,7 +89,7 @@ export default class Button extends React.Component {
   render = () => {
     return (<OverlayTrigger placement="bottom" overlay={this.getToolTip(this.props.toolTip)}>
       <Btn bsStyle="default" onClick={(e) => {
-          this.props.handleClick(e, this.props.data, this.props.callback)
+          this.props.handleClick(e, this.props.data, this.props.callback, this.props.options)
         }}>
         {this.getIcon()}
       </Btn>
