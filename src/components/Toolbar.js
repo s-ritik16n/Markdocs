@@ -20,16 +20,24 @@ export default class Toolbar extends React.Component {
       </ButtonGroup>
       <ButtonGroup>
         <DropdownButton bsStyle="primary" key="dropdown-header" title="Header" id={`split-button-basic-0`}>
-          <MenuItem>
-            <Button eventKey="1" handleClick={utils.headers} toolTip="h1" data={this.props.data} callback={this.props.callback}>
-              H1
-            </Button>
+          <MenuItem eventKey="1" onSelect={(e) => {utils.headers(e, this.props.data, this.props.callback)}}>
+            H1
           </MenuItem>
-          <MenuItem eventKey="2">H2</MenuItem>
-          <MenuItem eventKey="3">H3</MenuItem>
-          <MenuItem eventKey="4">H4</MenuItem>
-          <MenuItem eventKey="5">H5</MenuItem>
-          <MenuItem eventKey="6">H6</MenuItem>
+          <MenuItem eventKey="2" onSelect={(e) => {utils.headers(e, this.props.data, this.props.callback)}}>
+            H2
+          </MenuItem>
+          <MenuItem eventKey="3" onSelect={(e) => {utils.headers(e, this.props.data, this.props.callback)}}>
+            H3
+          </MenuItem>
+          <MenuItem eventKey="4" onSelect={(e) => {utils.headers(e, this.props.data, this.props.callback)}}>
+            H4
+          </MenuItem>
+          <MenuItem eventKey="5" onSelect={(e) => {utils.headers(e, this.props.data, this.props.callback)}}>
+            H5
+          </MenuItem>
+          <MenuItem eventKey="6" onSelect={(e) => {utils.headers(e, this.props.data, this.props.callback)}}>
+            H6
+          </MenuItem>
         </DropdownButton>
         <Button callback={this.props.callback} handleClick={utils.link} toolTip="Link" data={this.props.data} icon="FaChain"/>
         <Button callback={this.props.callback} handleClick={utils.table} toolTip="Table" data={this.props.data} icon="FaTable"/>
