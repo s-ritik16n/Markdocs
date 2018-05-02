@@ -28,62 +28,75 @@ export default class Button extends React.Component {
     super(props);
   }
 
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, info);
+    
+    console.log(error);
+    console.log("info -");
+    console.log(info);
+  }
+
   getToolTip = (content) => {
     return (<Tooltip id={"tooltip-"+content}>{content}</Tooltip>);
   }
 
   getIcon = () => {
-    switch (this.props.icon) {
-      case "FaBold":
+    if (this.props.icon) {
+      switch (this.props.icon) {
+        case "FaBold":
         return <FaBold/>
         break;
-      case "FaItalic":
+        case "FaItalic":
         return <FaItalic />
         break;
-      case "FaHeader":
+        case "FaHeader":
         return <FaHeader />;
         break;
-      case "FaChain":
+        case "FaChain":
         return <FaChain />
         break;
-      case "FaFileImageO":
+        case "FaFileImageO":
         return <FaFileImageO />;
         break;
-      case "FaListUl":
+        case "FaListUl":
         return <FaListUl />
         break;
-      case "FaListOl":
+        case "FaListOl":
         return <FaListOl />
         break;
-      case "FaTable":
+        case "FaTable":
         return <FaTable />
         break;
-      case "FaEllipsisH":
+        case "FaEllipsisH":
         return <FaEllipsisH />
         break;
-      case "FaFileCodeO":
+        case "FaFileCodeO":
         return <FaFileCodeO />
         break;
-      case "FaIndent":
+        case "FaIndent":
         return <FaIndent />
         break;
-      case "MdClearAll":
+        case "MdClearAll":
         return <MdClearAll />
         break;
-      case "MdCode":
+        case "MdCode":
         return <MdCode />;
         break;
-      case "MdContentCopy":
+        case "MdContentCopy":
         return <MdContentCopy />
         break;
-      case "MdFileDownload":
+        case "MdFileDownload":
         return <MdFileDownload />
         break;
-      case "FaBolt":
+        case "FaBolt":
         return <FaBolt />
         break;
-      default : return "Button";
+        default :return this.props.buttonText;
+      }
     }
+    return this.props.buttonText;
   }
 
   render = () => {

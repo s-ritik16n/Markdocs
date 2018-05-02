@@ -36,7 +36,8 @@ export const headers = (event, text, cb, options = null) => {
 }
 
 export const link = (event, text, cb, options = null) => {
-  text += text.length > 0 ? " [<title>](<URL>)" : "[<title>](<URL>)";
+  console.log(options);
+  text += text.length > 0 ? ` [${options.title || '<title>'}](${options.url || '<url>'})` : `[${options.title || '<title>'}](${options.url || '<url>'})`;
   cb(text);
 }
 
