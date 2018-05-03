@@ -47,7 +47,7 @@ export default class Toolbar extends React.Component {
   componentDidCatch(error, info) {
     // Display fallback UI
     // You can also log the error to an error reporting service
-    logErrorToMyService(error, info);
+    // logErrorToMyService(error, info);
 
     console.log(error);
     console.log("info -");

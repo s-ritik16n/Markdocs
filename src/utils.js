@@ -62,7 +62,7 @@ export const table = (event, text, cb, options = null) => {
 }
 
 export const rule = (event, text, cb, options = null) => {
-  text += text.length > 0 ? " \n***\n\n" : "***\n\n";
+  text += text.length > 0 ? "\n\n***\n\n" : "***\n\n";
   cb(text);
 }
 
