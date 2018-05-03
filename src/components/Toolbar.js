@@ -5,8 +5,28 @@ import Button from './Button';
 import * as utils from '../utils';
 import {ButtonGroup, ButtonToolbar, DropdownButton, MenuItem, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import {Button as Btn} from 'react-bootstrap';
-import {FaHeader, FaChain, FaFileImageO} from 'react-icons/lib/fa';
 import ModalComponent from './ModalComponent';
+import {
+  FaBold,
+  FaItalic,
+  FaHeader,
+  FaChain,
+  FaFileImageO,
+  FaListUl,
+  FaListOl,
+  FaTable,
+  FaEllipsisH,
+  FaFileCodeO,
+  FaIndent,
+  FaBolt,
+  FaStrikethrough
+} from 'react-icons/lib/fa';
+import {
+  MdClearAll,
+  MdCode,
+  MdContentCopy,
+  MdFileDownload
+} from 'react-icons/lib/md';
 
 export default class Toolbar extends React.Component {
   constructor(props) {
@@ -86,12 +106,12 @@ export default class Toolbar extends React.Component {
 
     return (<ButtonToolbar>
       <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.bold} toolTip="Strong Text" data={this.props.data} icon="FaBold"/>
-        <Button callback={this.props.callback} handleClick={utils.italic} toolTip="Italic Text" data={this.props.data} icon="FaItalic"/>
-        <Button callback={this.props.callback} handleClick={utils.strikeThrough} toolTip="Strike Through" data={this.props.data} icon="FaStrikethrough"/>
+        <Button callback={this.props.callback} handleClick={utils.bold} toolTip="Strong Text" data={this.props.data} icon={<FaBold />}/>
+        <Button callback={this.props.callback} handleClick={utils.italic} toolTip="Italic Text" data={this.props.data} icon={<FaItalic />}/>
+        <Button callback={this.props.callback} handleClick={utils.strikeThrough} toolTip="Strike Through" data={this.props.data} icon={<FaStrikethrough />}/>
       </ButtonGroup>
       <ButtonGroup>
-        <DropdownButton bsStyle="primary" key="dropdown-header" title={<FaHeader />} id={`split-button-basic-0`}>
+        <DropdownButton bsStyle="default" key="dropdown-header" title={<FaHeader />} id={`split-button-basic-0`}>
           <MenuItem eventKey="1" onSelect={(e) => {
               utils.headers(e, this.props.data, this.props.callback, {"headerType": 1})
             }}>
@@ -140,9 +160,9 @@ export default class Toolbar extends React.Component {
           />
         </ButtonGroup>
 
-        <Button callback={this.props.callback} handleClick={utils.table} toolTip="Table" data={this.props.data} icon="FaTable"/>
-        <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon="FaEllipsisH"/>
-        <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon="FaIndent"/>
+        <Button callback={this.props.callback} handleClick={utils.table} toolTip="Table" data={this.props.data} icon={<FaTable />}/>
+        <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon={<FaEllipsisH />}/>
+        <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon={<FaIndent />}/>
         <ButtonGroup>
           <Btn onClick={() => this.setState({showImageModal: true})} bsStyle="default"><FaFileImageO/></Btn>
           <ModalComponent
@@ -160,17 +180,17 @@ export default class Toolbar extends React.Component {
         </ButtonGroup>
       </ButtonGroup>
       <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.ulList} toolTip="Unordered List" data={this.props.data} icon="FaListUl"/>
-        <Button callback={this.props.callback} handleClick={utils.olList} toolTip="Ordered List" data={this.props.data} icon="FaListOl"/>
+        <Button callback={this.props.callback} handleClick={utils.ulList} toolTip="Unordered List" data={this.props.data} icon={<FaListUl/>}/>
+        <Button callback={this.props.callback} handleClick={utils.olList} toolTip="Ordered List" data={this.props.data} icon={<FaListOl/>}/>
       </ButtonGroup>
       <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.code} toolTip="Code" data={this.props.data} icon="MdCode"/>
-        <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon="FaFileCodeO"/>
+        <Button callback={this.props.callback} handleClick={utils.code} toolTip="Code" data={this.props.data} icon={<MdCode />}/>
+        <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon={<FaFileCodeO />}/>
       </ButtonGroup>
       <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.copy} toolTip="Copy" data={this.props.data} icon="MdContentCopy"/>
-        <Button callback={this.props.callback} handleClick={utils.clearText} toolTip="Clear" data={this.props.data} icon="MdClearAll"/>
-        <Button callback={this.props.callback} handleClick={utils.download} toolTip="Download" data={this.props.data} icon="MdFileDownload"/>
+        <Button callback={this.props.callback} handleClick={utils.copy} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
+        <Button callback={this.props.callback} handleClick={utils.clearText} toolTip="Clear" data={this.props.data} icon={<MdClearAll />}/>
+        <Button callback={this.props.callback} handleClick={utils.download} toolTip="Download" data={this.props.data} icon={<MdFileDownload />}/>
       </ButtonGroup>
     </ButtonToolbar>);
   }
