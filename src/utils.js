@@ -45,6 +45,11 @@ export const image = (event, text, cb, options = null) => {
   cb(text);
 }
 
+export const strikeThrough = (event, text, cb, options = null) => {
+  text += text.length > 0 ? " ~~<text_here>~~" : "~~<text_here>~~";
+  cb(text);
+}
+
 export const ulList = (event, text, cb, options = null) => {
   console.log("Unordered list util - pending");
   cb(text);

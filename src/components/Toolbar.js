@@ -88,6 +88,7 @@ export default class Toolbar extends React.Component {
       <ButtonGroup>
         <Button callback={this.props.callback} handleClick={utils.bold} toolTip="Strong Text" data={this.props.data} icon="FaBold"/>
         <Button callback={this.props.callback} handleClick={utils.italic} toolTip="Italic Text" data={this.props.data} icon="FaItalic"/>
+        <Button callback={this.props.callback} handleClick={utils.strikeThrough} toolTip="Strike Through" data={this.props.data} icon="FaStrikethrough"/>
       </ButtonGroup>
       <ButtonGroup>
         <DropdownButton bsStyle="primary" key="dropdown-header" title={<FaHeader />} id={`split-button-basic-0`}>

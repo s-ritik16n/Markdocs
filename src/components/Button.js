@@ -14,7 +14,8 @@ import {
   FaEllipsisH,
   FaFileCodeO,
   FaIndent,
-  FaBolt
+  FaBolt,
+  FaStrikethrough
 } from 'react-icons/lib/fa';
 import {
   MdClearAll,
@@ -92,6 +93,9 @@ export default class Button extends React.Component {
         break;
         case "FaBolt":
         return <FaBolt />
+        break;
+        case "FaStrikethrough":
+        return <FaStrikethrough />
         break;
         default :return this.props.buttonText;
       }
