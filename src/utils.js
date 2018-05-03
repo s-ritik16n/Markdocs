@@ -36,13 +36,12 @@ export const headers = (event, text, cb, options = null) => {
 }
 
 export const link = (event, text, cb, options = null) => {
-  console.log(options);
   text += text.length > 0 ? ` [${options.title || '<title>'}](${options.url || '<url>'})` : `[${options.title || '<title>'}](${options.url || '<url>'})`;
   cb(text);
 }
 
 export const image = (event, text, cb, options = null) => {
-  text += text.length > 0 ? " \n\n![<alt_text>](<Image_URL>)" : "![<alt_text>](<Image_URL>)";
+  text += text.length > 0 ? ` \n\n![${options.alt_text || '<alt_text>'}](${options.image_URL || '<Image_URL>'})` : `![${options.alt_text || '<alt_text>'}](${options.image_URL || '<Image_URL>'})`;
   cb(text);
 }
 

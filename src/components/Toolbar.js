@@ -5,7 +5,7 @@ import Button from './Button';
 import * as utils from '../utils';
 import {ButtonGroup, ButtonToolbar, DropdownButton, MenuItem, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import {Button as Btn} from 'react-bootstrap';
-import {FaHeader, FaChain} from 'react-icons/lib/fa';
+import {FaHeader, FaChain, FaFileImageO} from 'react-icons/lib/fa';
 import ModalComponent from './ModalComponent';
 
 export default class Toolbar extends React.Component {
@@ -14,11 +14,14 @@ export default class Toolbar extends React.Component {
   }
 
   state = {
-    showLinkModal: false
+    showLinkModal: false,
+    showImageModal: false
   }
 
   linkUrlInput;
   linkTextInput;
+  imageUrlInput;
+  imageAltTextInput;
 
   linkModalJSX = (<form>
     <FormGroup controlId="link-modal-title">
@@ -44,11 +47,33 @@ export default class Toolbar extends React.Component {
     this.setState({showLinkModal: false});
   }
 
-  componentDidCatch(error, info) {
-    // Display fallback UI
-    // You can also log the error to an error reporting service
-    // logErrorToMyService(error, info);
+  imageModalJSX = (
+    <form>
+      <FormGroup controlId="image-modal-title">
+        <ControlLabel>Alternate Text</ControlLabel>
+        <FormControl inputRef={inst => {this.imageAltTextInput = inst}} type="text" />
+      </FormGroup>
+      <FormGroup controlId="iamge-modal-url">
+        <ControlLabel>Image URL</ControlLabel>
+        <FormControl inputRef={inst => {this.imageUrlInput = inst}} type="text"/>
+      </FormGroup>
+    </form>
+  );
 
+  imageModalListener = (event) => {
+    event.preventDefault();
+    console.log(this.imageAltTextInput.value);
+    console.log(this.imageUrlInput.value);
+    let data = this.props.data;
+    let options = {
+      "image_URL": this.imageUrlInput.value,
+      "alt_text": this.imageAltTextInput.value
+    };
+    utils.image(event, data, this.props.callback, options);
+    this.setState({showImageModal: false});
+  }
+
+  componentDidCatch(error, info) {
     console.log(error);
     console.log("info -");
     console.log(info);
@@ -56,7 +81,8 @@ export default class Toolbar extends React.Component {
 
   render = () => {
 
-    let linkModalClose = () => this.setState({showLinkModal: false});
+    let linkModalClose      = () => this.setState({showLinkModal: false});
+    let imageModalClose     = () => this.setState({showImageModal: false});
 
     return (<ButtonToolbar>
       <ButtonGroup>
@@ -116,7 +142,21 @@ export default class Toolbar extends React.Component {
         <Button callback={this.props.callback} handleClick={utils.table} toolTip="Table" data={this.props.data} icon="FaTable"/>
         <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon="FaEllipsisH"/>
         <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon="FaIndent"/>
-        <Button callback={this.props.callback} handleClick={utils.image} toolTip="Image" data={this.props.data} icon="FaFileImageO"/>
+        <ButtonGroup>
+          <Btn onClick={() => this.setState({showImageModal: true})} bsStyle="default"><FaFileImageO/></Btn>
+          <ModalComponent
+            toolTip="Add"
+            buttonText="Add"
+            callback={this.props.callback}
+            handleClick={this.imageModalListener}
+            data={this.props.data}
+            show={this.state.showImageModal}
+            onHide={imageModalClose}
+            id="image-modal"
+            title="Add Image"
+            body={this.imageModalJSX}
+            />
+        </ButtonGroup>
       </ButtonGroup>
       <ButtonGroup>
         <Button callback={this.props.callback} handleClick={utils.ulList} toolTip="Unordered List" data={this.props.data} icon="FaListUl"/>
