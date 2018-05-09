@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import GlyphButton from './GlyphButton';
 import Button from './Button';
 import * as utils from '../utils';
-import {ButtonGroup, ButtonToolbar, DropdownButton, MenuItem, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
+import { ButtonGroup, ButtonToolbar, DropdownButton, MenuItem, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
-import {Button as Btn} from 'react-bootstrap';
+import { Button as Btn } from 'react-bootstrap';
 import ModalComponent from './ModalComponent';
+import * as jsx from '../JSX';
 import {
   FaBold,
   FaItalic,
@@ -54,61 +55,32 @@ export default class Toolbar extends React.Component {
     type: toast.TYPE.INFO,
     closeButton: false
   });
+
   notCopiedToast = () => toast("Copying failed!", { position: toast.POSITION.TOP_RIGHT, autoClose: true});
 
-  linkUrlInput;
-  linkTextInput;
-  imageUrlInput;
-  imageAltTextInput;
-
-
-  linkModalJSX = (
-    <form>
-      <FormGroup controlId="link-modal-title">
-        <ControlLabel>Title</ControlLabel>
-        <FormControl inputRef={inst => {this.linkTextInput = inst}} type="text"/>
-      </FormGroup>
-      <FormGroup controlId="link-modal-url">
-        <ControlLabel>URL</ControlLabel>
-        <FormControl inputRef={inst => {this.linkUrlInput = inst}} type="text"/>
-      </FormGroup>
-    </form>
-  );
+  linkModalJSX         = jsx.linkModalJSX;
+  imageModalJSX        = jsx.imageModalJSX;
+  clearModalJSX        = jsx.clearModalJSX;
 
   linkModalListener = (event) => {
     event.preventDefault();
-    console.log(this.linkTextInput.value);
-    console.log(this.linkUrlInput.value);
+
     let data = this.props.data;
     let options = {
-      "url": this.linkUrlInput.value,
-      "title": this.linkTextInput.value
+      "url": jsx.linkUrlInput.value,
+      "title": jsx.linkTextInput.value
     };
     utils.link(event, data, this.props.callback, options);
     this.setState({showLinkModal: false});
   }
 
-  imageModalJSX = (
-    <form>
-      <FormGroup controlId="image-modal-title">
-        <ControlLabel>Alternate Text</ControlLabel>
-        <FormControl inputRef={inst => {this.imageAltTextInput = inst}} type="text" />
-      </FormGroup>
-      <FormGroup controlId="iamge-modal-url">
-        <ControlLabel>Image URL</ControlLabel>
-        <FormControl inputRef={inst => {this.imageUrlInput = inst}} type="text"/>
-      </FormGroup>
-    </form>
-  );
-
   imageModalListener = (event) => {
     event.preventDefault();
-    console.log(this.imageAltTextInput.value);
-    console.log(this.imageUrlInput.value);
+
     let data = this.props.data;
     let options = {
-      "image_URL": this.imageUrlInput.value,
-      "alt_text": this.imageAltTextInput.value
+      "image_URL": jsx.imageUrlInput.value,
+      "alt_text": jsx.imageAltTextInput.value
     };
     utils.image(event, data, this.props.callback, options);
     this.setState({showImageModal: false});
@@ -119,11 +91,6 @@ export default class Toolbar extends React.Component {
     utils.clearText(event, this.props.data, this.props.callback);
     this.setState({showClearModal: false});
   }
-
-  clearModalJSX = (
-    <div>Are you sure you wish to clear all data?</div>
-  );
-
 
 
   render = () => {
