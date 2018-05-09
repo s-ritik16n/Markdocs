@@ -18,7 +18,7 @@ export default class ModalComponent extends React.Component {
   render = () => {
     return (
       <Modal show={this.props.show} bsSize='large' aria-labelledby={this.props.id}>
-        <Modal.Header closeButton="closeButton">
+        <Modal.Header>
           <Modal.Title id={this.props.id}>{this.props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
