@@ -35,7 +35,8 @@ export default class Toolbar extends React.Component {
 
   state = {
     showLinkModal: false,
-    showImageModal: false
+    showImageModal: false,
+    showClearModal: false
   }
 
   linkUrlInput;
@@ -93,6 +94,16 @@ export default class Toolbar extends React.Component {
     this.setState({showImageModal: false});
   }
 
+  clearModalListener = (event) => {
+    event.preventDefault();
+    utils.clearText(event, this.props.data, this.props.callback);
+    this.setState({showClearModal: false});
+  }
+
+  clearModalJSX = (
+    <div>Are you sure you wish to clear all data?</div>
+  );
+
   componentDidCatch(error, info) {
     console.log(error);
     console.log("info -");
@@ -103,6 +114,7 @@ export default class Toolbar extends React.Component {
 
     let linkModalClose      = () => this.setState({showLinkModal: false});
     let imageModalClose     = () => this.setState({showImageModal: false});
+    let clearModalClose     = () => this.setState({showClearModal: false});
 
     return (<ButtonToolbar>
       <ButtonGroup>
@@ -189,7 +201,22 @@ export default class Toolbar extends React.Component {
       </ButtonGroup>
       <ButtonGroup>
         <Button callback={this.props.callback} handleClick={utils.copy} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
-        <Button callback={this.props.callback} handleClick={utils.clearText} toolTip="Clear" data={this.props.data} icon={<MdClearAll />}/>
+        <ButtonGroup>
+          <Btn onClick={() => this.setState({showClearModal: true})} bsStyle="default"><MdClearAll /></Btn>
+          <ModalComponent
+            toolTip="Clear screen"
+            buttonText="Yess"
+            callback={this.props.callback}
+            handleClick={this.clearModalListener}
+            data={this.props.data}
+            show={this.state.showClearModal}
+            onHide={clearModalClose}
+            id="clear-modal"
+            title="Clear Screen"
+            body={this.clearModalJSX}
+            bsStyle="primary"
+            />
+        </ButtonGroup>
         <Button callback={this.props.callback} handleClick={utils.download} toolTip="Download" data={this.props.data} icon={<MdFileDownload />}/>
       </ButtonGroup>
     </ButtonToolbar>);

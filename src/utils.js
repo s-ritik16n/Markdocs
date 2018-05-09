@@ -96,7 +96,5 @@ export const download = (event, text, cb, options = null) => {
 }
 
 export const clearText = (event, text, cb, options = null) => {
-  // requires one confirmation
-  console.log("clear text util - pending");
-  cb(text);
+  cb("");
 }
