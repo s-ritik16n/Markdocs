@@ -12,24 +12,24 @@ export const headers = (event, text, cb, options = null) => {
   if (options.headerType) {
     switch (options.headerType) {
       case 1:
-        text += text.length > 0 ? "\n# " : "# ";
+        text += text.length > 0 ? "\n\n# " : "# ";
         break;
       case 2:
-        text += text.length > 0 ? "\n## " : "## ";
+        text += text.length > 0 ? "\n\n## " : "## ";
         break;
       case 3:
-        text += text.length > 0 ? "\n### " : "### ";
+        text += text.length > 0 ? "\n\n### " : "### ";
         break;
       case 4:
-        text += text.length > 0 ? "\n#### " : "#### ";
+        text += text.length > 0 ? "\n\n#### " : "#### ";
         break;
       case 5:
-        text += text.length > 0 ? "\n##### " : "##### ";
+        text += text.length > 0 ? "\n\n##### " : "##### ";
         break;
       case 6:
-        text += text.length > 0 ? "\n###### " : "###### ";
+        text += text.length > 0 ? "\n\n###### " : "###### ";
         break;
-      default: text += text.length > 0 ? "\n###### " : "###### ";
+      default: text += text.length > 0 ? "\n\n###### " : "###### ";
     }
   }
   cb(text);
