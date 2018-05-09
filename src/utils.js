@@ -86,7 +86,9 @@ export const blockQuote = (event, text, cb, options = null) => {
 }
 
 export const copy = (event, text, cb, options = null) => {
-  console.log("copy util - pending");
+  // console.log();
+  document.getElementById(options["id"]).select();
+  document.execCommand("copy");
   cb(text);
 }
 

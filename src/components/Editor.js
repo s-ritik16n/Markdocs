@@ -27,7 +27,7 @@ export default class Editor extends React.Component {
   render = () => {
     return (
       <div style={this.editorContainer}>
-        <textarea onChange={(e) => {
+        <textarea id="mainTextArea" onChange={(e) => {
           this.props.handleChangeEvent(this.refs.textareaRef)
         }} ref="textareaRef" placeholder="textarea" style={this.editorStyle}></textarea>
       </div>

@@ -205,7 +205,7 @@ export default class Toolbar extends React.Component {
           <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon={<FaFileCodeO />}/>
         </ButtonGroup>
         <ButtonGroup>
-          <Button callback={this.props.callback} handleClick={utils.copy} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
+          <Button callback={this.props.callback} handleClick={utils.copy} options={{"id": "mainTextArea"}} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
           <ButtonGroup>
             <Btn onClick={() => this.setState({showClearModal: true})} bsStyle="default"><MdClearAll /></Btn>
             <ModalComponent
