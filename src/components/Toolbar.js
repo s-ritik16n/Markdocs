@@ -4,6 +4,7 @@ import GlyphButton from './GlyphButton';
 import Button from './Button';
 import * as utils from '../utils';
 import {ButtonGroup, ButtonToolbar, DropdownButton, MenuItem, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
 import {Button as Btn} from 'react-bootstrap';
 import ModalComponent from './ModalComponent';
 import {
@@ -39,16 +40,27 @@ export default class Toolbar extends React.Component {
     showClearModal: false
   }
 
-  linkUrlInput;
-  linkTextInput;
-  imageUrlInput;
-  imageAltTextInput;
 
   componentDidCatch(error, info) {
     console.log(error);
     console.log("info -");
     console.log(info);
   }
+
+
+  copiedToast = () => toast("Copied to Clipboard!", {
+    position: toast.POSITION.TOP_RIGHT,
+    autoClose: true,
+    type: toast.TYPE.INFO,
+    closeButton: false
+  });
+  notCopiedToast = () => toast("Copying failed!", { position: toast.POSITION.TOP_RIGHT, autoClose: true});
+
+  linkUrlInput;
+  linkTextInput;
+  imageUrlInput;
+  imageAltTextInput;
+
 
   linkModalJSX = (
     <form>
@@ -205,7 +217,7 @@ export default class Toolbar extends React.Component {
           <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon={<FaFileCodeO />}/>
         </ButtonGroup>
         <ButtonGroup>
-          <Button callback={this.props.callback} handleClick={utils.copy} options={{"id": "mainTextArea"}} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
+          <Button callback={this.props.callback} handleClick={utils.copy} options={{"id": "mainTextArea", copyDone: this.copiedToast, copyFailed:this.notCopiedToast}} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
           <ButtonGroup>
             <Btn onClick={() => this.setState({showClearModal: true})} bsStyle="default"><MdClearAll /></Btn>
             <ModalComponent

@@ -86,10 +86,12 @@ export const blockQuote = (event, text, cb, options = null) => {
 }
 
 export const copy = (event, text, cb, options = null) => {
-  // console.log();
-  document.getElementById(options["id"]).select();
-  document.execCommand("copy");
-  cb(text);
+  if(text.length > 0) {
+    document.getElementById(options["id"]).select();
+    let copyBool = document.execCommand("copy");
+    copyBool ? options.copyDone() : options.copyFailed();
+    cb(text);
+  }
 }
 
 export const download = (event, text, cb, options = null) => {
