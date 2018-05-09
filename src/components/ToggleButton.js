@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 export default class ToggleButton extends React.Component {
 
-  state : {
+  state: {
     checked: false
   }
 
@@ -12,8 +12,6 @@ export default class ToggleButton extends React.Component {
   }
 
   render = () => {
-    return (
-      <div></div>
-    );
+    return (<div></div>);
   }
 }

@@ -44,16 +44,24 @@ export default class Toolbar extends React.Component {
   imageUrlInput;
   imageAltTextInput;
 
-  linkModalJSX = (<form>
-    <FormGroup controlId="link-modal-title">
-      <ControlLabel>Title</ControlLabel>
-      <FormControl inputRef={inst => {this.linkTextInput = inst}} type="text"/>
-    </FormGroup>
-    <FormGroup controlId="link-modal-url">
-      <ControlLabel>URL</ControlLabel>
-      <FormControl inputRef={inst => {this.linkUrlInput = inst}} type="text"/>
-    </FormGroup>
-  </form>);
+  componentDidCatch(error, info) {
+    console.log(error);
+    console.log("info -");
+    console.log(info);
+  }
+
+  linkModalJSX = (
+    <form>
+      <FormGroup controlId="link-modal-title">
+        <ControlLabel>Title</ControlLabel>
+        <FormControl inputRef={inst => {this.linkTextInput = inst}} type="text"/>
+      </FormGroup>
+      <FormGroup controlId="link-modal-url">
+        <ControlLabel>URL</ControlLabel>
+        <FormControl inputRef={inst => {this.linkUrlInput = inst}} type="text"/>
+      </FormGroup>
+    </form>
+  );
 
   linkModalListener = (event) => {
     event.preventDefault();
@@ -104,11 +112,7 @@ export default class Toolbar extends React.Component {
     <div>Are you sure you wish to clear all data?</div>
   );
 
-  componentDidCatch(error, info) {
-    console.log(error);
-    console.log("info -");
-    console.log(info);
-  }
+
 
   render = () => {
 
@@ -116,109 +120,110 @@ export default class Toolbar extends React.Component {
     let imageModalClose     = () => this.setState({showImageModal: false});
     let clearModalClose     = () => this.setState({showClearModal: false});
 
-    return (<ButtonToolbar>
-      <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.bold} toolTip="Strong Text" data={this.props.data} icon={<FaBold />}/>
-        <Button callback={this.props.callback} handleClick={utils.italic} toolTip="Italic Text" data={this.props.data} icon={<FaItalic />}/>
-        <Button callback={this.props.callback} handleClick={utils.strikeThrough} toolTip="Strike Through" data={this.props.data} icon={<FaStrikethrough />}/>
-      </ButtonGroup>
-      <ButtonGroup>
-        <DropdownButton bsStyle="default" key="dropdown-header" title={<FaHeader />} id={`split-button-basic-0`}>
-          <MenuItem eventKey="1" onSelect={(e) => {
-              utils.headers(e, this.props.data, this.props.callback, {"headerType": 1})
-            }}>
-            H1
-          </MenuItem>
-          <MenuItem eventKey="2" onSelect={(e) => {
-              utils.headers(e, this.props.data, this.props.callback, {"headerType": 2})
-            }}>
-            H2
-          </MenuItem>
-          <MenuItem eventKey="3" onSelect={(e) => {
-              utils.headers(e, this.props.data, this.props.callback, {"headerType": 3})
-            }}>
-            H3
-          </MenuItem>
-          <MenuItem eventKey="4" onSelect={(e) => {
-              utils.headers(e, this.props.data, this.props.callback, {"headerType": 4})
-            }}>
-            H4
-          </MenuItem>
-          <MenuItem eventKey="5" onSelect={(e) => {
-              utils.headers(e, this.props.data, this.props.callback, {"headerType": 5})
-            }}>
-            H5
-          </MenuItem>
-          <MenuItem eventKey="6" onSelect={(e) => {
-              utils.headers(e, this.props.data, this.props.callback, {"headerType": 6})
-            }}>
-            H6
-          </MenuItem>
-        </DropdownButton>
+    return (
+      <ButtonToolbar>
+        <ButtonGroup>
+          <Button callback={this.props.callback} handleClick={utils.bold} toolTip="Strong Text" data={this.props.data} icon={<FaBold />}/>
+          <Button callback={this.props.callback} handleClick={utils.italic} toolTip="Italic Text" data={this.props.data} icon={<FaItalic />}/>
+          <Button callback={this.props.callback} handleClick={utils.strikeThrough} toolTip="Strike Through" data={this.props.data} icon={<FaStrikethrough />}/>
+        </ButtonGroup>
+        <ButtonGroup>
+          <DropdownButton bsStyle="default" key="dropdown-header" title={<FaHeader />} id={`split-button-basic-0`}>
+            <MenuItem eventKey="1" onSelect={(e) => {
+                utils.headers(e, this.props.data, this.props.callback, {"headerType": 1})
+              }}>
+              H1
+            </MenuItem>
+            <MenuItem eventKey="2" onSelect={(e) => {
+                utils.headers(e, this.props.data, this.props.callback, {"headerType": 2})
+              }}>
+              H2
+            </MenuItem>
+            <MenuItem eventKey="3" onSelect={(e) => {
+                utils.headers(e, this.props.data, this.props.callback, {"headerType": 3})
+              }}>
+              H3
+            </MenuItem>
+            <MenuItem eventKey="4" onSelect={(e) => {
+                utils.headers(e, this.props.data, this.props.callback, {"headerType": 4})
+              }}>
+              H4
+            </MenuItem>
+            <MenuItem eventKey="5" onSelect={(e) => {
+                utils.headers(e, this.props.data, this.props.callback, {"headerType": 5})
+              }}>
+              H5
+            </MenuItem>
+            <MenuItem eventKey="6" onSelect={(e) => {
+                utils.headers(e, this.props.data, this.props.callback, {"headerType": 6})
+              }}>
+              H6
+            </MenuItem>
+          </DropdownButton>
 
-        <ButtonGroup>
-          <Btn onClick={() => this.setState({showLinkModal: true})} bsStyle="default"><FaChain/></Btn>
-          <ModalComponent
-            toolTip="Add"
-            buttonText="Add"
-            callback={this.props.callback}
-            handleClick={this.linkModalListener}
-            data={this.props.data}
-            show={this.state.showLinkModal}
-            onHide={linkModalClose}
-            id="link-modal"
-            title="Add Link"
-            body={this.linkModalJSX}
-          />
-        </ButtonGroup>
+          <ButtonGroup>
+            <Btn onClick={() => this.setState({showLinkModal: true})} bsStyle="default"><FaChain/></Btn>
+            <ModalComponent
+              toolTip="Add"
+              buttonText="Add"
+              callback={this.props.callback}
+              handleClick={this.linkModalListener}
+              data={this.props.data}
+              show={this.state.showLinkModal}
+              onHide={linkModalClose}
+              id="link-modal"
+              title="Add Link"
+              body={this.linkModalJSX}
+            />
+          </ButtonGroup>
 
-        <Button callback={this.props.callback} handleClick={utils.table} toolTip="Table" data={this.props.data} icon={<FaTable />}/>
-        <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon={<FaEllipsisH />}/>
-        <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon={<FaIndent />}/>
-        <ButtonGroup>
-          <Btn onClick={() => this.setState({showImageModal: true})} bsStyle="default"><FaFileImageO/></Btn>
-          <ModalComponent
-            toolTip="Add"
-            buttonText="Add"
-            callback={this.props.callback}
-            handleClick={this.imageModalListener}
-            data={this.props.data}
-            show={this.state.showImageModal}
-            onHide={imageModalClose}
-            id="image-modal"
-            title="Add Image"
-            body={this.imageModalJSX}
-            />
+          <Button callback={this.props.callback} handleClick={utils.table} toolTip="Table" data={this.props.data} icon={<FaTable />}/>
+          <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon={<FaEllipsisH />}/>
+          <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon={<FaIndent />}/>
+          <ButtonGroup>
+            <Btn onClick={() => this.setState({showImageModal: true})} bsStyle="default"><FaFileImageO/></Btn>
+            <ModalComponent
+              toolTip="Add"
+              buttonText="Add"
+              callback={this.props.callback}
+              handleClick={this.imageModalListener}
+              data={this.props.data}
+              show={this.state.showImageModal}
+              onHide={imageModalClose}
+              id="image-modal"
+              title="Add Image"
+              body={this.imageModalJSX}
+              />
+          </ButtonGroup>
         </ButtonGroup>
-      </ButtonGroup>
-      <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.ulList} toolTip="Unordered List" data={this.props.data} icon={<FaListUl/>}/>
-        <Button callback={this.props.callback} handleClick={utils.olList} toolTip="Ordered List" data={this.props.data} icon={<FaListOl/>}/>
-      </ButtonGroup>
-      <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.code} toolTip="Code" data={this.props.data} icon={<MdCode />}/>
-        <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon={<FaFileCodeO />}/>
-      </ButtonGroup>
-      <ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.copy} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
         <ButtonGroup>
-          <Btn onClick={() => this.setState({showClearModal: true})} bsStyle="default"><MdClearAll /></Btn>
-          <ModalComponent
-            toolTip="Clear screen"
-            buttonText="Yess"
-            callback={this.props.callback}
-            handleClick={this.clearModalListener}
-            data={this.props.data}
-            show={this.state.showClearModal}
-            onHide={clearModalClose}
-            id="clear-modal"
-            title="Clear Screen"
-            body={this.clearModalJSX}
-            bsStyle="primary"
-            />
+          <Button callback={this.props.callback} handleClick={utils.ulList} toolTip="Unordered List" data={this.props.data} icon={<FaListUl/>}/>
+          <Button callback={this.props.callback} handleClick={utils.olList} toolTip="Ordered List" data={this.props.data} icon={<FaListOl/>}/>
         </ButtonGroup>
-        <Button callback={this.props.callback} handleClick={utils.download} toolTip="Download" data={this.props.data} icon={<MdFileDownload />}/>
-      </ButtonGroup>
+        <ButtonGroup>
+          <Button callback={this.props.callback} handleClick={utils.code} toolTip="Code" data={this.props.data} icon={<MdCode />}/>
+          <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon={<FaFileCodeO />}/>
+        </ButtonGroup>
+        <ButtonGroup>
+          <Button callback={this.props.callback} handleClick={utils.copy} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
+          <ButtonGroup>
+            <Btn onClick={() => this.setState({showClearModal: true})} bsStyle="default"><MdClearAll /></Btn>
+            <ModalComponent
+              toolTip="Clear screen"
+              buttonText="Yess"
+              callback={this.props.callback}
+              handleClick={this.clearModalListener}
+              data={this.props.data}
+              show={this.state.showClearModal}
+              onHide={clearModalClose}
+              id="clear-modal"
+              title="Clear Screen"
+              body={this.clearModalJSX}
+              bsStyle="primary"
+              />
+          </ButtonGroup>
+          <Button callback={this.props.callback} handleClick={utils.download} toolTip="Download" data={this.props.data} icon={<MdFileDownload />}/>
+        </ButtonGroup>
     </ButtonToolbar>);
   }
 }
