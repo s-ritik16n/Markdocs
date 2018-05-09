@@ -26,6 +26,10 @@ export default class MarkdocsApp extends React.Component {
   textHandler = (element) => {
     this.setState({
       rawData: element.value
+    }, () => {
+      if(this.state.showPreview) {
+        this.state.parsedData = preview(this.state.rawData);
+      }
     });
   }
 
