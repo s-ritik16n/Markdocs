@@ -56,7 +56,31 @@ export const ulList = (event, text, cb, options = null) => {
 }
 
 export const olList = (event, text, cb, options = null) => {
-  console.log("Ordered list util - pending");
+  if (text.length > 0) {
+    if (text.slice(-1) === "\n") {
+      text = text.slice(0, -1);
+    }
+
+    let temp = text.split("\n")[text.split("\n").length - 1];
+    if (temp.indexOf(".") > 0) {
+      let number = temp.substring(0, temp.indexOf("."));
+
+      if (!isNaN(number)) {
+        text += "\n" + (parseInt(number) + 1) + ". ";
+        cb(text);
+        return;
+      } else {
+        text += "\n\n1. ";
+        cb(text);
+        return;
+      }
+    } else {
+      text += "\n\n1. ";
+      cb(text);
+      return;
+    }
+  }
+  text = "1. ";
   cb(text);
 }
 
