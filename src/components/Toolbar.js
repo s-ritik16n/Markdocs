@@ -7,6 +7,7 @@ import { ButtonGroup, ButtonToolbar, DropdownButton, MenuItem, FormControl, Form
 import { ToastContainer, toast } from 'react-toastify';
 import { Button as Btn } from 'react-bootstrap';
 import ModalComponent from './ModalComponent';
+import DropDown from './DropDown';
 import * as jsx from '../JSX';
 import {
   FaBold,
@@ -107,39 +108,28 @@ export default class Toolbar extends React.Component {
           <Button callback={this.props.callback} handleClick={utils.strikeThrough} toolTip="Strike Through" data={this.props.data} icon={<FaStrikethrough />}/>
         </ButtonGroup>
         <ButtonGroup>
-          <DropdownButton bsStyle="default" key="dropdown-header" title={<FaHeader />} id={`split-button-basic-0`}>
-            <MenuItem eventKey="1" onSelect={(e) => {
-                utils.headers(e, this.props.data, this.props.callback, {"headerType": 1})
-              }}>
-              H1
-            </MenuItem>
-            <MenuItem eventKey="2" onSelect={(e) => {
-                utils.headers(e, this.props.data, this.props.callback, {"headerType": 2})
-              }}>
-              H2
-            </MenuItem>
-            <MenuItem eventKey="3" onSelect={(e) => {
-                utils.headers(e, this.props.data, this.props.callback, {"headerType": 3})
-              }}>
-              H3
-            </MenuItem>
-            <MenuItem eventKey="4" onSelect={(e) => {
-                utils.headers(e, this.props.data, this.props.callback, {"headerType": 4})
-              }}>
-              H4
-            </MenuItem>
-            <MenuItem eventKey="5" onSelect={(e) => {
-                utils.headers(e, this.props.data, this.props.callback, {"headerType": 5})
-              }}>
-              H5
-            </MenuItem>
-            <MenuItem eventKey="6" onSelect={(e) => {
-                utils.headers(e, this.props.data, this.props.callback, {"headerType": 6})
-              }}>
-              H6
-            </MenuItem>
-          </DropdownButton>
-
+          <DropDown
+            bsStyle="default"
+            keyProp="dropdown-header"
+            title={<FaHeader />}
+            id="split-button-basic-0"
+            utils={utils.headers}
+            options={
+              [
+                {"headerType": 1},
+                {"headerType": 2},
+                {"headerType": 3},
+                {"headerType": 4},
+                {"headerType": 5},
+                {"headerType": 6}
+              ]
+            }
+            text={
+              ["H1", "H2", "H3", "H4", "H5", "H6"]
+            }
+            data={this.props.data}
+            callback={this.props.callback}
+          />
           <ButtonGroup>
             <Btn onClick={() => this.setState({showLinkModal: true})} bsStyle="default"><FaChain/></Btn>
             <ModalComponent
