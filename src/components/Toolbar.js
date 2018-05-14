@@ -189,7 +189,7 @@ export default class Toolbar extends React.Component {
             <Btn onClick={() => this.setState({showClearModal: true})} bsStyle="default"><MdClearAll /></Btn>
             <ModalComponent
               toolTip="Clear screen"
-              buttonText="Yess"
+              buttonText="Yes"
               callback={this.props.callback}
               handleClick={this.clearModalListener}
               data={this.props.data}
