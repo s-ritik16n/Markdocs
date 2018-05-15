@@ -7,6 +7,11 @@ import Button from './Button';
 export default class ModalComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.escEvent = this.escEvent.bind(this);
+  }
+
+  componentDidUpdate() {
+    // document.addEventListener("keypress", this.escEvent);
   }
 
   componentDidCatch(error, info) {
@@ -15,9 +20,13 @@ export default class ModalComponent extends React.Component {
     console.log(info);
   }
 
+  escEvent(event) {
+    if (event.keyCode == 27) this.props.onHide();
+  }
+
   render = () => {
     return (
-      <Modal show={this.props.show} bsSize='large' aria-labelledby={this.props.id}>
+      <Modal onKeyUp={this.escEvent} show={this.props.show} bsSize='large' aria-labelledby={this.props.id}>
         <Modal.Header>
           <Modal.Title id={this.props.id}>{this.props.title}</Modal.Title>
         </Modal.Header>
