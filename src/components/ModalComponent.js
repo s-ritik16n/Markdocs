@@ -10,10 +10,6 @@ export default class ModalComponent extends React.Component {
     this.escEvent = this.escEvent.bind(this);
   }
 
-  componentDidUpdate() {
-    // document.addEventListener("keypress", this.escEvent);
-  }
-
   componentDidCatch(error, info) {
     console.log(error);
     console.log("info -");
