@@ -56,9 +56,9 @@ export default class MarkdocsApp extends React.Component {
         <div>
           <Toolbar style="display: inline-Block" callback={this.setTextData} data={this.state.rawData}/>
           <ToastContainer autoClose={2000} />
+          <Button handleClick={this.previewHandler} icon={<FaBolt />} data={this.state.rawData} toolTip="Toggle Preview"/>
         </div>
-        <Button handleClick={this.previewHandler} icon={<FaBolt />} data={this.state.rawData} toolTip="Toggle Preview"/>
-        <Editor data={this.state.rawData} handleChangeEvent={this.textHandler}/>
+        <Editor showPreview={this.state.showPreview} data={this.state.rawData} handleChangeEvent={this.textHandler}/>
         <Preview hide={this.state.showPreview} id="preview" value={this.state.parsedData}/>
       </div>
     );
