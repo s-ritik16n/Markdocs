@@ -10,14 +10,15 @@ export default class Editor extends React.Component {
     super(props);
   }
 
-  editorContainer = {
-    height: "82vh"
-  }
-
-  editorStyle = {
-    height: "100%",
-    width : "100%",
-    padding: "8px"
+  styles = {
+    'editorContainer': {
+      height: "82vh"
+    },
+    'editorStyle': {
+      height: "100%",
+      width : "100%",
+      padding: "8px"
+    }
   }
 
   componentDidUpdate = () => {
@@ -32,10 +33,10 @@ export default class Editor extends React.Component {
       'float-left': this.props.showPreview
     });
     return (
-      <div id="mainTextAreaCntr" className={widthClass} style={this.editorContainer}>
+      <div id="mainTextAreaCntr" className={widthClass} style={this.styles["editorContainer"]}>
         <textarea id="mainTextArea" onChange={(e) => {
           this.props.handleChangeEvent(this.refs.textareaRef)
-        }} ref="textareaRef" placeholder="textarea" style={this.editorStyle}></textarea>
+        }} ref="textareaRef" placeholder="textarea" style={this.styles["editorStyle"]}></textarea>
       </div>
     );
   }
