@@ -85,7 +85,33 @@ export const olList = (event, text, cb, options = null) => {
 }
 
 export const table = (event, text, cb, options = null) => {
-  console.log("table util - pending");
+  text += text.length > 0 ? "\n\n" : "";
+
+  for (var i = 0; i < options.cols; i++) {
+    text += "| <header> ";
+  }
+  text += "|\n";
+
+  for (var i = 0; i < options.cols; i++) {
+    text += "| --- ";
+  }
+  text += "|\n";
+
+  for (let i = 0; i < options.rows; i++) {
+    for (let j = 0; j < options.cols; j++) {
+      text += "| <data> "
+    }
+    text += "|\n";
+
+    if (i != options.rows - 1) {
+      for (let j = 0; j < options.cols; j++) {
+        text += "| --- "
+      }
+      text += "|\n";
+    } else {
+      text += "\n\n"
+    }
+  }
   cb(text);
 }
 
@@ -113,7 +139,7 @@ export const copy = (event, text, cb, options = null) => {
   if(text.length > 0) {
     document.getElementById(options["id"]).select();
     let copyBool = document.execCommand("copy");
-    copyBool ? options.copyDone() : options.copyFailed();
+    copyBool ? options.raiseToast(options.copyDone) : options.raiseToast(options.copyFailed);
     cb(text);
   }
 }

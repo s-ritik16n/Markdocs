@@ -38,32 +38,34 @@ export default class Toolbar extends React.Component {
     super(props);
   }
 
-  state = {
-    showLinkModal: false,
-    showImageModal: false,
-    showClearModal: false
-  }
-
-
   componentDidCatch(error, info) {
     console.log(error);
     console.log("info -");
     console.log(info);
   }
 
-
-  copiedToast = () => toast("Copied to Clipboard!", {
-    position: toast.POSITION.TOP_RIGHT,
-    autoClose: true,
-    type: toast.TYPE.INFO,
-    closeButton: false
-  });
-
-  notCopiedToast = () => toast("Copying failed!", { position: toast.POSITION.TOP_RIGHT, autoClose: true});
+  state = {
+    showLinkModal: false,
+    showImageModal: false,
+    showClearModal: false,
+    showTableModal: false
+  }
 
   linkModalJSX         = jsx.linkModalJSX;
   imageModalJSX        = jsx.imageModalJSX;
   clearModalJSX        = jsx.clearModalJSX;
+  tableModalJSX        = jsx.tableModalJSX;
+
+  getToast = (text) => {
+    const new_toast = toast(text, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: true,
+      type: toast.TYPE.INFO,
+      closeButton: false
+    });
+    return new_toast;
+  };
+
 
   linkModalListener = (event) => {
     event.preventDefault();
@@ -77,6 +79,7 @@ export default class Toolbar extends React.Component {
     this.setState({showLinkModal: false});
   }
 
+
   imageModalListener = (event) => {
     event.preventDefault();
 
@@ -89,10 +92,27 @@ export default class Toolbar extends React.Component {
     this.setState({showImageModal: false});
   }
 
+
   clearModalListener = (event) => {
     event.preventDefault();
     utils.clearText(event, this.props.data, this.props.callback);
     this.setState({showClearModal: false});
+  }
+
+
+  tableModalListener = (event) => {
+    event.preventDefault();
+    if (isNaN(jsx.tableRowInput.value) || isNaN(jsx.tableColInput.value)) {
+      this.setState({showTableModal: false});
+      this.getToast("Invalid Input!");
+      return;
+    }
+    let options={
+      "rows": jsx.tableRowInput.value,
+      "cols": jsx.tableColInput.value
+    }
+    utils.table(event, this.props.data, this.props.callback, options);
+    this.setState({showTableModal: false});
   }
 
 
@@ -101,6 +121,7 @@ export default class Toolbar extends React.Component {
     let linkModalClose      = () => this.setState({showLinkModal: false});
     let imageModalClose     = () => this.setState({showImageModal: false});
     let clearModalClose     = () => this.setState({showClearModal: false});
+    let tableModalClose     = () => this.setState({showTableModal: false});
 
     return (
       <ButtonToolbar>
@@ -147,8 +168,21 @@ export default class Toolbar extends React.Component {
               body={this.linkModalJSX}
             />
           </ButtonGroup>
-
-          <Button callback={this.props.callback} handleClick={utils.table} toolTip="Table" data={this.props.data} icon={<FaTable />}/>
+          <ButtonGroup>
+            <Btn onClick={() => this.setState({showTableModal: true})} bsStyle="default"><FaTable/></Btn>
+            <ModalComponent
+              toolTip="Add"
+              buttonText="Add"
+              callback={this.props.callback}
+              handleClick={this.tableModalListener}
+              data={this.props.data}
+              show={this.state.showTableModal}
+              onHide={tableModalClose}
+              id="table-modal"
+              title="Add Table"
+              body={this.tableModalJSX}
+              />
+          </ButtonGroup>
           <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon={<FaEllipsisH />}/>
           <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon={<FaIndent />}/>
           <ButtonGroup>
@@ -178,7 +212,7 @@ export default class Toolbar extends React.Component {
           <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon={<FaFileCodeO />}/>
         </ButtonGroup>
         <ButtonGroup>
-          <Button callback={this.props.callback} handleClick={utils.copy} options={{"id": "mainTextArea", copyDone: this.copiedToast, copyFailed:this.notCopiedToast}} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
+          <Button callback={this.props.callback} handleClick={utils.copy} options={{"id": "mainTextArea", raiseToast:this.getToast, copyDone: "Copied to Clipboard!", copyFailed:"Copying failed!"}} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
           <ButtonGroup>
             <Btn onClick={() => this.setState({showClearModal: true})} bsStyle="default"><MdClearAll /></Btn>
             <ModalComponent

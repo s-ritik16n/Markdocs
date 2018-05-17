@@ -10,6 +10,14 @@ export default class Editor extends React.Component {
     super(props);
   }
 
+  componentDidUpdate = () => {
+    console.log("componentDidUpdate");
+    this.textareaRef.value = this.props.data;
+    setTimeout(() => {
+      this.textareaRef.focus();
+    }, 500);
+  }
+
   styles = {
     'editorContainer': {
       height: "82vh"
@@ -21,10 +29,10 @@ export default class Editor extends React.Component {
     }
   }
 
-  componentDidUpdate = () => {
-    console.log("componentDidUpdate ..");
-    this.refs.textareaRef.value = this.props.data;
-    this.refs.textareaRef.focus();
+  moveCaretAtEnd = (e) => {
+    let temp_value = e.target.value;
+    e.target.value = '';
+    e.target.value = temp_value;
   }
 
   render = () => {
@@ -34,9 +42,9 @@ export default class Editor extends React.Component {
     });
     return (
       <div id="mainTextAreaCntr" className={widthClass} style={this.styles["editorContainer"]}>
-        <textarea id="mainTextArea" onChange={(e) => {
+        <textarea autoFocus onFocus={this.moveCaretAtEnd} id="mainTextArea" onChange={(e) => {
           this.props.handleChangeEvent(this.refs.textareaRef)
-        }} ref="textareaRef" placeholder="textarea" style={this.styles["editorStyle"]}></textarea>
+        }} ref={(input) => { this.textareaRef = input; }} placeholder="write your markdown here" style={this.styles["editorStyle"]}></textarea>
       </div>
     );
   }
