@@ -1,10 +1,10 @@
 export const bold = (event, text, cb, options = null) => {
-  text += text.length > 0 ? " **<text_here>**" : "**<text_here>**";
+  text += text.length > 0 ? " **<text_here>** " : "**<text_here>** ";
   cb(text);
 }
 
 export const italic = (event, text, cb, options = null) => {
-  text += text.length > 0 ? " *<text_here>*" : "*<text_here>*";
+  text += text.length > 0 ? " *<text_here>* " : "*<text_here>* ";
   cb(text);
 }
 
@@ -36,17 +36,17 @@ export const headers = (event, text, cb, options = null) => {
 }
 
 export const link = (event, text, cb, options = null) => {
-  text += text.length > 0 ? ` [${options.title || '<title>'}](${options.url || '<url>'})` : `[${options.title || '<title>'}](${options.url || '<url>'})`;
+  text += text.length > 0 ? ` [${options.title || '<title>'}](${options.url || '<url>'}) ` : `[${options.title || '<title>'}](${options.url || '<url>'}) `;
   cb(text);
 }
 
 export const image = (event, text, cb, options = null) => {
-  text += text.length > 0 ? ` \n\n![${options.alt_text || '<alt_text>'}](${options.image_URL || '<Image_URL>'})` : `![${options.alt_text || '<alt_text>'}](${options.image_URL || '<Image_URL>'})`;
+  text += text.length > 0 ? ` \n\n![${options.alt_text || '<alt_text>'}](${options.image_URL || '<Image_URL> '})` : `![${options.alt_text || '<alt_text>'}](${options.image_URL || '<Image_URL> '})`;
   cb(text);
 }
 
 export const strikeThrough = (event, text, cb, options = null) => {
-  text += text.length > 0 ? " ~~<text_here>~~" : "~~<text_here>~~";
+  text += text.length > 0 ? " ~~<text_here>~~ " : "~~<text_here>~~ ";
   cb(text);
 }
 
@@ -121,7 +121,7 @@ export const rule = (event, text, cb, options = null) => {
 }
 
 export const code = (event, text, cb, options = null) => {
-  text += text.length > 0 ? " `<code_here>`" : "`<code_here>`";
+  text += text.length > 0 ? " `<code_here>` " : "`<code_here>` ";
   cb(text);
 }
 
@@ -131,7 +131,7 @@ export const codeBlock = (event, text, cb, options = null) => {
 }
 
 export const blockQuote = (event, text, cb, options = null) => {
-  text += text.length > 0 ? text.split("\n")[text.split("\n").length-1][0] === ">" ? "\n><text_here>" : "\n\n><text_here>" : "><text_here>";
+  text += text.length > 0 ? text.split("\n")[text.split("\n").length-1][0] === ">" ? "\n><text_here> " : "\n\n><text_here> " : "><text_here> ";
   cb(text);
 }
 
@@ -142,11 +142,6 @@ export const copy = (event, text, cb, options = null) => {
     copyBool ? options.raiseToast(options.copyDone) : options.raiseToast(options.copyFailed);
     cb(text);
   }
-}
-
-export const download = (event, text, cb, options = null) => {
-  console.log("download util - pending");
-  cb(text);
 }
 
 export const clearText = (event, text, cb, options = null) => {
