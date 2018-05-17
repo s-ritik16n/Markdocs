@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import GlyphButton from './GlyphButton';
 import Button from './Button';
 import * as utils from '../utils';
+import * as adutils from '../advanced-utils';
 import { ButtonGroup, ButtonToolbar, DropdownButton, MenuItem, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import { Button as Btn } from 'react-bootstrap';
@@ -229,7 +230,7 @@ export default class Toolbar extends React.Component {
               bsStyle="primary"
               />
           </ButtonGroup>
-          <Button callback={this.props.callback} handleClick={utils.download} toolTip="Download" data={this.props.data} icon={<MdFileDownload />}/>
+          <Button callback={this.props.callback} handleClick={adutils.download} toolTip="Download" data={this.props.data} icon={<MdFileDownload />}/>
         </ButtonGroup>
     </ButtonToolbar>);
   }

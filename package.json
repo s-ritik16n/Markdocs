@@ -5,6 +5,7 @@
   "dependencies": {
     "@axetroy/react-download": "^1.1.1",
     "classnames": "^2.2.5",
+    "downloadjs": "^1.4.7",
     "live-server": "^1.2.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
