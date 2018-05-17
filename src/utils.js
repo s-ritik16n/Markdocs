@@ -51,7 +51,18 @@ export const strikeThrough = (event, text, cb, options = null) => {
 }
 
 export const ulList = (event, text, cb, options = null) => {
-  console.log("Unordered list util - pending");
+  if (text.length > 0) {
+    if (text.slice(-1) == "\n") {
+      text = text.slice(0, -1);
+    }
+    if ((text.split("\n")[text.split("\n").length - 1]).indexOf("-") == 0) {
+      text += "\n- ";
+    } else {
+      text += "\n\n- ";
+    }
+  } else {
+    text += "- ";
+  }
   cb(text);
 }
 
