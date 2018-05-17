@@ -43,7 +43,7 @@ export default class Editor extends React.Component {
     return (
       <div id="mainTextAreaCntr" className={widthClass} style={this.styles["editorContainer"]}>
         <textarea autoFocus onFocus={this.moveCaretAtEnd} id="mainTextArea" onChange={(e) => {
-          this.props.handleChangeEvent(this.refs.textareaRef)
+          this.props.handleChangeEvent(this.textareaRef)
         }} ref={(input) => { this.textareaRef = input; }} placeholder="write your markdown here" style={this.styles["editorStyle"]}></textarea>
       </div>
     );

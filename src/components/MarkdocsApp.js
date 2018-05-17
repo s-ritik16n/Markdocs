@@ -18,6 +18,12 @@ export default class MarkdocsApp extends React.Component {
     showPreview: false
   }
 
+  componentDidCatch(error, info) {
+    console.log(error);
+    console.log("info -");
+    console.log(info);
+  }
+
   constructor(props) {
     super(props);
     this.previewHandler = this.previewHandler.bind(this);
