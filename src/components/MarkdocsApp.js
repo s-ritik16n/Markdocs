@@ -7,7 +7,7 @@ import Button from './Button';
 import { preview } from '../advanced-utils';
 import ToggleButton from './ToggleButton';
 import { Button as Btn } from 'react-bootstrap';
-import { FaBolt } from 'react-icons/lib/fa';
+import { FaToggleOff, FaToggleOn } from 'react-icons/lib/fa';
 import { ToastContainer, toast } from 'react-toastify';
 
 export default class MarkdocsApp extends React.Component {
@@ -56,7 +56,7 @@ export default class MarkdocsApp extends React.Component {
         <div>
           <Toolbar style="display: inline-Block" callback={this.setTextData} data={this.state.rawData}/>
           <ToastContainer autoClose={2000} />
-          <Button handleClick={this.previewHandler} icon={<FaBolt />} data={this.state.rawData} toolTip="Toggle Preview"/>
+          <Button handleClick={this.previewHandler} icon={this.state.showPreview ? <FaToggleOff /> : <FaToggleOn/>} data={this.state.rawData} toolTip={this.state.showPreview ? "Turn Preview Off" : "Turn Preview On"}/>
         </div>
         <Editor showPreview={this.state.showPreview} data={this.state.rawData} handleChangeEvent={this.textHandler}/>
         <Preview hide={this.state.showPreview} id="preview" value={this.state.parsedData}/>

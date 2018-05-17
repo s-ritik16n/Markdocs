@@ -22,7 +22,9 @@ import {
   FaFileCodeO,
   FaIndent,
   FaBolt,
-  FaStrikethrough
+  FaStrikethrough,
+  FaSquareO,
+  FaSquare
 } from 'react-icons/lib/fa';
 import {
   MdClearAll,
@@ -168,6 +170,8 @@ export default class Toolbar extends React.Component {
         <ButtonGroup>
           <Button callback={this.props.callback} handleClick={utils.ulList} toolTip="Unordered List" data={this.props.data} icon={<FaListUl/>}/>
           <Button callback={this.props.callback} handleClick={utils.olList} toolTip="Ordered List" data={this.props.data} icon={<FaListOl/>}/>
+          <Button callback={this.props.callback} handleClick={utils.completeTask} toolTip="Task list (completed)" data={this.props.data}  icon={<FaSquareO/>}/>
+          <Button callback={this.props.callback} handleClick={utils.incompleteTask} toolTip="Task list (incomplete)" data={this.props.data}  icon={<FaSquare/>}/>
         </ButtonGroup>
         <ButtonGroup>
           <Button callback={this.props.callback} handleClick={utils.code} toolTip="Code" data={this.props.data} icon={<MdCode />}/>
