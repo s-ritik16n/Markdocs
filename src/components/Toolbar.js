@@ -45,6 +45,15 @@ export default class Toolbar extends React.Component {
     console.log(info);
   }
 
+  componentWillReceiveProps() {
+    console.log("componentWillReceiveProps");
+    if (this.props.showTableModal) {
+      this.setState({showTableModal: true});
+    } else if (this.props.showLinkModal) {
+      this.setState({showLinkModal: true});
+    }
+  }
+
   state = {
     showLinkModal: false,
     showImageModal: false,
@@ -155,7 +164,7 @@ export default class Toolbar extends React.Component {
             callback={this.props.callback}
           />
           <ButtonGroup>
-            <Btn onClick={() => this.setState({showLinkModal: true})} bsStyle="default"><FaChain/></Btn>
+            <Button handleClick={() => this.setState({showLinkModal: true})} bsStyle="default" icon={<FaChain/>} toolTip="Link (Alt + L)"/>
             <ModalComponent
               toolTip="Add"
               buttonText="Add"
@@ -170,7 +179,7 @@ export default class Toolbar extends React.Component {
             />
           </ButtonGroup>
           <ButtonGroup>
-            <Btn onClick={() => this.setState({showTableModal: true})} bsStyle="default"><FaTable/></Btn>
+            <Button handleClick={() => this.setState({showTableModal: true})} bsStyle="default" icon={<FaTable />} toolTip="Table (Alt + T)" />
             <ModalComponent
               toolTip="Add"
               buttonText="Add"
