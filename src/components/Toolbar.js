@@ -136,9 +136,9 @@ export default class Toolbar extends React.Component {
     return (
       <ButtonToolbar>
         <ButtonGroup>
-          <Button callback={this.props.callback} handleClick={utils.bold} toolTip="Strong Text" data={this.props.data} icon={<FaBold />}/>
-          <Button callback={this.props.callback} handleClick={utils.italic} toolTip="Italic Text" data={this.props.data} icon={<FaItalic />}/>
-          <Button callback={this.props.callback} handleClick={utils.strikeThrough} toolTip="Strike Through" data={this.props.data} icon={<FaStrikethrough />}/>
+          <Button callback={this.props.callback} handleClick={utils.bold} toolTip="Strong Text (Alt + B)" data={this.props.data} icon={<FaBold />}/>
+          <Button callback={this.props.callback} handleClick={utils.italic} toolTip="Italic Text (Alt + I)" data={this.props.data} icon={<FaItalic />}/>
+          <Button callback={this.props.callback} handleClick={utils.strikeThrough} toolTip="Strike Through (Alt + S)" data={this.props.data} icon={<FaStrikethrough />}/>
         </ButtonGroup>
         <ButtonGroup>
           <DropDown
@@ -193,10 +193,10 @@ export default class Toolbar extends React.Component {
               body={this.tableModalJSX}
               />
           </ButtonGroup>
-          <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon={<FaEllipsisH />}/>
-          <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon={<FaIndent />}/>
+          <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule (Alt + H)" data={this.props.data} icon={<FaEllipsisH />}/>
+          <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote (Alt + Q)" data={this.props.data} icon={<FaIndent />}/>
           <ButtonGroup>
-            <Button handleClick={() => this.setState({showImageModal: true})} bsStyle="default" icon={<FaFileImageO/>} toolTip="Image"/>
+            <Button handleClick={() => this.setState({showImageModal: true})} bsStyle="default" icon={<FaFileImageO/>} toolTip="Image (Alt + P)"/>
             <ModalComponent
               toolTip="Add"
               buttonText="Add"
@@ -212,19 +212,19 @@ export default class Toolbar extends React.Component {
           </ButtonGroup>
         </ButtonGroup>
         <ButtonGroup>
-          <Button callback={this.props.callback} handleClick={utils.ulList} toolTip="Unordered List" data={this.props.data} icon={<FaListUl/>}/>
-          <Button callback={this.props.callback} handleClick={utils.olList} toolTip="Ordered List" data={this.props.data} icon={<FaListOl/>}/>
-          <Button callback={this.props.callback} handleClick={utils.completeTask} toolTip="Task list (completed)" data={this.props.data}  icon={<FaSquareO/>}/>
-          <Button callback={this.props.callback} handleClick={utils.incompleteTask} toolTip="Task list (incomplete)" data={this.props.data}  icon={<FaSquare/>}/>
+          <Button callback={this.props.callback} handleClick={utils.ulList} toolTip="Unordered List (Alt + U)" data={this.props.data} icon={<FaListUl/>}/>
+          <Button callback={this.props.callback} handleClick={utils.olList} toolTip="Ordered List (Alt + O)" data={this.props.data} icon={<FaListOl/>}/>
+          <Button callback={this.props.callback} handleClick={utils.completeTask} toolTip="Task list (completed) (Alt + X)" data={this.props.data}  icon={<FaSquareO/>}/>
+          <Button callback={this.props.callback} handleClick={utils.incompleteTask} toolTip="Task list (incomplete Alt + C)" data={this.props.data}  icon={<FaSquare/>}/>
         </ButtonGroup>
         <ButtonGroup>
-          <Button callback={this.props.callback} handleClick={utils.code} toolTip="Code" data={this.props.data} icon={<MdCode />}/>
-          <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block" data={this.props.data} icon={<FaFileCodeO />}/>
+          <Button callback={this.props.callback} handleClick={utils.code} toolTip="Code (Alt + L)" data={this.props.data} icon={<MdCode />}/>
+          <Button callback={this.props.callback} handleClick={utils.codeBlock} toolTip="Code Block (Alt + D)" data={this.props.data} icon={<FaFileCodeO />}/>
         </ButtonGroup>
         <ButtonGroup>
           <Button callback={this.props.callback} handleClick={utils.copy} options={{"id": "mainTextArea", raiseToast:this.getToast, copyDone: "Copied to Clipboard!", copyFailed:"Copying failed!"}} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
           <ButtonGroup>
-            <Button handleClick={() => this.setState({showClearModal: true})} bsStyle="default" icon={<MdClearAll />} toolTip="Clear Screen"/>
+            <Button handleClick={() => this.setState({showClearModal: true})} bsStyle="default" icon={<MdClearAll />} toolTip="Clear Screen (Alt + CLR)"/>
             <ModalComponent
               toolTip="Clear screen"
               buttonText="Yes"
