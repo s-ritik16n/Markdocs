@@ -15,7 +15,22 @@ export default class MarkdocsApp extends React.Component {
   state = {
     rawData: "",
     parsedData: "",
-    showPreview: false
+    showPreview: false,
+    showTableModal: false,
+    showLinkModal: false
+  }
+
+  keyPressed = [];
+
+
+  constructor(props) {
+    super(props);
+    this.previewHandler = this.previewHandler.bind(this);
+  }
+
+  componentDidMount () {
+    document.addEventListener("keyup", (event) => this.keyUpEvent(event));
+    document.addEventListener("keydown", (event) => this.keyDownEvent(event));
   }
 
   componentDidCatch(error, info) {
@@ -24,9 +39,29 @@ export default class MarkdocsApp extends React.Component {
     console.log(info);
   }
 
-  constructor(props) {
-    super(props);
-    this.previewHandler = this.previewHandler.bind(this);
+  keyUpEvent = (event) => {
+
+    let key1 = this.keyPressed[this.keyPressed.length - 1];
+    let key2 = this.keyPressed[this.keyPressed.length - 2];
+    this.keyPressed = [];
+    let keys = [key1, key2];
+    if (keys.indexOf("Alt") !== -1) {
+
+      if (keys.indexOf("t") !== -1) {
+        this.setState({showTableModal: true}, () => {
+          this.setState({showTableModal: false});
+        });
+      }
+      else if (keys.indexOf("l") !== -1) {
+        this.setState({showLinkModal: true}, () => {
+          this.setState({showLinkModal: false});
+        })
+      }
+    }
+  }
+
+  keyDownEvent =(event) => {
+    this.keyPressed.push(event.key);
   }
 
   textHandler = (element) => {
@@ -60,7 +95,7 @@ export default class MarkdocsApp extends React.Component {
     return (
       <div className="container-fluid">
         <div>
-          <Toolbar style="display: inline-Block" callback={this.setTextData} data={this.state.rawData}/>
+          <Toolbar showLinkModal={this.state.showLinkModal} showTableModal={this.state.showTableModal} style="display: inline-Block" callback={this.setTextData} data={this.state.rawData}/>
           <ToastContainer autoClose={2000} />
           <Button handleClick={this.previewHandler} icon={this.state.showPreview ? <FaToggleOff /> : <FaToggleOn/>} data={this.state.rawData} toolTip={this.state.showPreview ? "Turn Preview Off" : "Turn Preview On"}/>
         </div>
