@@ -143,7 +143,7 @@ export const codeBlock = (event, text, cb, options = null) => {
 }
 
 export const blockQuote = (event, text, cb, options = null) => {
-  text += text.length > 0 ? text.split("\n")[text.split("\n").length-1][0] === ">" ? "\n><text_here> " : "\n\n><text_here> " : "><text_here> ";
+  text += text.length > 0 ? text.split("\n")[text.split("\n").length-1][0] === ">" ? "\n> <text_here> " : "\n\n> <text_here> " : "> <text_here> ";
   cb(text);
 }
 
