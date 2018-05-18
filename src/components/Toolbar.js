@@ -196,7 +196,7 @@ export default class Toolbar extends React.Component {
           <Button callback={this.props.callback} handleClick={utils.rule} toolTip="Horizintal Rule" data={this.props.data} icon={<FaEllipsisH />}/>
           <Button callback={this.props.callback} handleClick={utils.blockQuote} toolTip="Block Quote" data={this.props.data} icon={<FaIndent />}/>
           <ButtonGroup>
-            <Btn onClick={() => this.setState({showImageModal: true})} bsStyle="default"><FaFileImageO/></Btn>
+            <Button handleClick={() => this.setState({showImageModal: true})} bsStyle="default" icon={<FaFileImageO/>} toolTip="Image"/>
             <ModalComponent
               toolTip="Add"
               buttonText="Add"
@@ -224,7 +224,7 @@ export default class Toolbar extends React.Component {
         <ButtonGroup>
           <Button callback={this.props.callback} handleClick={utils.copy} options={{"id": "mainTextArea", raiseToast:this.getToast, copyDone: "Copied to Clipboard!", copyFailed:"Copying failed!"}} toolTip="Copy" data={this.props.data} icon={<MdContentCopy />}/>
           <ButtonGroup>
-            <Btn onClick={() => this.setState({showClearModal: true})} bsStyle="default"><MdClearAll /></Btn>
+            <Button handleClick={() => this.setState({showClearModal: true})} bsStyle="default" icon={<MdClearAll />} toolTip="Clear Screen"/>
             <ModalComponent
               toolTip="Clear screen"
               buttonText="Yes"
