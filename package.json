@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@axetroy/react-download": "^1.1.1",
+    "body-parser": "^1.18.3",
     "classnames": "^2.2.5",
     "downloadjs": "^1.4.7",
     "live-server": "^1.2.0",
@@ -20,16 +21,18 @@
     "validator": "^9.4.1",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.9",
-    "webpack-dev-server": "^3.0.0"
+    "webpack-dev-server": "^3.0.0",
+    "express": "^4.16.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "test": "react-scripts test --env=jsdom",
+    "start": "cd dist & nodemon ./index.js",
     "eject": "react-scripts eject",
     "build": "webpack",
     "build-babel": "babel src -d lib",
     "serve": "live-server public/",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server",
+    "build-server": "babel ./server --out-dir dist",
+    "build-react": "webpack -p --config webpack.production.config.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
