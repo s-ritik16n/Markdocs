@@ -1,1 +1,1 @@
-web: cd dist & nodemon index.js
+web: cd dist & nodemon ./index.js
