@@ -1,1 +1,1 @@
-web: node index.js
+web: cd dist & node index.js
