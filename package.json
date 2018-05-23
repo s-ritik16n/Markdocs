@@ -26,12 +26,11 @@
   },
   "scripts": {
     "start": "cd dist & nodemon ./index.js",
-    "eject": "react-scripts eject",
     "build": "webpack",
     "build-babel": "babel src -d lib",
-    "serve": "live-server public/",
     "dev-server": "webpack-dev-server",
-    "build-app": "babel ./server --out-dir dist & webpack -p --config webpack.production.config.js"
+    "build-app": "babel ./server --out-dir dist & webpack -p --config webpack.production.config.js",
+    "push": "git push origin master & git push heroku master"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
