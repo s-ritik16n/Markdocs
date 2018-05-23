@@ -2,6 +2,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
+import process from 'process';
 
 const app = express();
 app.set('port', 8000);
@@ -17,4 +18,4 @@ app.get("/authcallback", (req, res) => {
   console.log(res);
 });
 
-app.listen(app.get('port'), (port) => { console.log(`all eyes at ${app.get('port')}`); })
+app.listen(process.env.PORT || 8000, () => { console.log(`all eyes at ${process.env.PORT || 8000}`); })
