@@ -29,5 +29,5 @@ app.get("/authcallback", function (req, res) {
 });
 
 app.listen(app.get('port'), function (port) {
-  console.log('all eyes at ' + port);
+  console.log('all eyes at ' + app.get('port'));
 });

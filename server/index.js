@@ -17,4 +17,4 @@ app.get("/authcallback", (req, res) => {
   console.log(res);
 });
 
-app.listen(app.get('port'), (port) => { console.log(`all eyes at ${port}`); })
+app.listen(app.get('port'), (port) => { console.log(`all eyes at ${app.get('port')}`); })
