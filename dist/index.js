@@ -15,6 +15,7 @@ var _path2 = _interopRequireDefault(_path);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
+app.set('port', 8000);
 app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use(_express2.default.static(_path2.default.join(__dirname, 'public')));
@@ -27,7 +28,6 @@ app.get("/authcallback", function (req, res) {
   console.log(res);
 });
 
-app.listen('9000', function () {
-  console.log("running heroku");
-  console.log("all eyes at 9000");
+app.listen(app.get('port'), function (port) {
+  console.log('all eyes at ' + port);
 });
