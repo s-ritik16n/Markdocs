@@ -31,8 +31,7 @@
     "build-babel": "babel src -d lib",
     "serve": "live-server public/",
     "dev-server": "webpack-dev-server",
-    "build-server": "babel ./server --out-dir dist",
-    "build-react": "webpack -p --config webpack.production.config.js"
+    "build-app": "babel ./server --out-dir dist & webpack -p --config webpack.production.config.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
