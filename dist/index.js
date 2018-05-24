@@ -44,7 +44,11 @@ app.get("/authcallback", function (req, res) {
     (0, _axios2.default)({
       method: 'post',
       url: 'https://github.com/login/oauth/access_token',
-      headers: { 'Accept': 'application/json' }
+      headers: { 'Accept': 'application/json' },
+      data: {
+        code: code,
+        state: state
+      }
     }).then(function (response) {
       console.log("here i get the response");
       console.log(response.data);
