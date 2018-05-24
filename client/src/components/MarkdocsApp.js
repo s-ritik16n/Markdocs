@@ -29,6 +29,7 @@ export default class MarkdocsApp extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(this.props.params);
     this.previewHandler = this.previewHandler.bind(this);
   }
 
@@ -110,7 +111,7 @@ export default class MarkdocsApp extends React.Component {
         </div>
         <Editor showPreview={this.state.showPreview} data={this.state.rawData} handleChangeEvent={this.textHandler}/>
         <Preview hide={this.state.showPreview} id="preview" value={this.state.parsedData}/>
-        <Btn href="https://github.com/login/oauth/authorize?client_id=b5422eace97554dec4b5&state=e72e16c7e42f292c6912e7710c838347ae178b4" target="_blank">Upload to github</Btn> 
+        <Btn href="https://github.com/login/oauth/authorize?client_id=b5422eace97554dec4b5&state=e72e16c7e42f292c6912e7710c838347ae178b4" target="_blank">Upload to github</Btn>
       </div>
     );
   }

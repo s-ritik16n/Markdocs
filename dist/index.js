@@ -24,12 +24,18 @@ app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use(_express2.default.static(_path2.default.join(__dirname, 'public')));
 
+app.use(function (req, res, next) {
+  res.set('Accept', 'application/json');
+  next();
+});
+
 app.get("/", function (req, res) {
   res.sendFile(_path2.default.join(__dirname, 'public', 'index.html'));
 });
 
 app.get("/authcallback", function (req, res) {
   console.log(res);
+  res.sendFile(_path2.default.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(_process2.default.env.PORT || 8000, function () {
