@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 app.get("/authcallback", (req, res) => {
   const code = req.query.code;
   const state = req.query.state;
+  console.log("here is a log outside axios");
   new Promise(function(resolve, reject) {
     axios({
       method: 'post',
