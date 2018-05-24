@@ -30,6 +30,7 @@ app.get("/authcallback", (req, res) => {
       headers: {'Accept': 'application/json'}
     })
     .then(function(response) {
+      console.log("here i get the response");
       console.log(response.data);
       resolve(response.data);
     }).catch((err) => {
