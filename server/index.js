@@ -38,7 +38,6 @@ app.get("/authcallback", (req, res) => {
   }).then((val)=>{
     res.redirect('/');
   }).catch((err) => {
-    console.log(err);
     res.redirect('/');
   });
 });
