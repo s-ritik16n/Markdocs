@@ -46,6 +46,7 @@ app.get("/authcallback", function (req, res) {
       url: 'https://github.com/login/oauth/access_token',
       headers: { 'Accept': 'application/json' }
     }).then(function (response) {
+      console.log("here i get the response");
       console.log(response.data);
       resolve(response.data);
     }).catch(function (err) {
@@ -54,7 +55,6 @@ app.get("/authcallback", function (req, res) {
   }).then(function (val) {
     res.redirect('/');
   }).catch(function (err) {
-    console.log(err);
     res.redirect('/');
   });
 });
