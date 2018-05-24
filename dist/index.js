@@ -16,6 +16,10 @@ var _process = require('process');
 
 var _process2 = _interopRequireDefault(_process);
 
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
@@ -34,8 +38,25 @@ app.get("/", function (req, res) {
 });
 
 app.get("/authcallback", function (req, res) {
-  console.log(res);
-  res.sendFile(_path2.default.join(__dirname, 'public', 'index.html'));
+  var code = req.query.code;
+  var state = req.query.state;
+  new Promise(function (resolve, reject) {
+    (0, _axios2.default)({
+      method: 'post',
+      url: 'https://github.com/login/oauth/access_token',
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      console.log(response.data);
+      resolve(response.data);
+    }).catch(function (err) {
+      reject(err);
+    });
+  }).then(function (val) {
+    res.redirect('/');
+  }).catch(function (err) {
+    console.log(err);
+    res.redirect('/');
+  });
 });
 
 app.listen(_process2.default.env.PORT || 8000, function () {
