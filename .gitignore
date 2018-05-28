@@ -8,6 +8,8 @@
 
 # production
 /build
+dist/
+
 server/config.js
 
 # misc
