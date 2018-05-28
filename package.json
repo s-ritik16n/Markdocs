@@ -32,6 +32,7 @@
     "build": "webpack",
     "build-babel": "babel src -d lib",
     "dev-server": "webpack-dev-server",
+    "build-server": "babel ./server --out-dir dist",
     "build-app": "babel ./server --out-dir dist & webpack -p --config webpack.production.config.js",
     "push": "git push origin master & git push heroku master"
   },

@@ -25,7 +25,6 @@ app.get("/authcallback", (req, res) => {
   const code = req.query.code;
   const state = req.query.state;
   console.log("here is a log outside axios");
-  console.log(process.env.CLIENT_ID);
   try {
     axios({
       method: 'post',
@@ -44,7 +43,7 @@ app.get("/authcallback", (req, res) => {
       const bearer = response.data['bearer'];
       axios({
         method:'GET',
-        url:'https://github.com/user?access_token='+access_token,
+        url:'https://api.github.com/user?access_token='+access_token,
         headers: {'Accept': 'application/json'}
       }).then((res) => {
         console.log("i get the user");
