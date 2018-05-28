@@ -39,11 +39,9 @@ app.get("/authcallback", (req, res) => {
   .then(function(response) {
     console.log("here i get the response - then");
     console.log(response.data);
-    resolve(response.data);
     res.redirect('/');
   }).catch((err) => {
       console.log("here i get the response - error");
-      reject(err);
       res.redirect('/');
     });
 });
