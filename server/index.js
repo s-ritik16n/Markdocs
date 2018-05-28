@@ -50,6 +50,9 @@ app.get("/authcallback", (req, res) => {
         console.log("i get the user");
         console.log(res);
         res.redirect('/');
+      }).catch((err) => {
+        console.log(`error in get /user - ${err}`);
+        res.redirect('/');
       });
     });
   } catch (e) {
