@@ -8,6 +8,7 @@
 
 # production
 /build
+dist/config.js
 
 server/config.js
 
