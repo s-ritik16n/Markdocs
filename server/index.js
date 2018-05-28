@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
 app.get("/authcallback", (req, res) => {
   const code = req.query.code;
   const state = req.query.state;
-  console.log("here is a log outside axios");
   try {
     axios({
       method: 'post',
@@ -38,19 +37,16 @@ app.get("/authcallback", (req, res) => {
       }
     })
     .then(function(response) {
-      console.log("here i get the response - then");
       const access_token = response.data['access_token'];
-      const bearer = response.data['bearer'];
       axios({
         method:'GET',
         url:'https://api.github.com/user?access_token='+access_token,
         headers: {'Accept': 'application/json'}
       }).then((res) => {
-        console.log("i get the user");
-        console.log(res);
+        console.log(`/user - ${res.data.login}`);
         res.redirect('/');
       }).catch((err) => {
-        console.log(`error in get /user - ${err}`);
+        console.log(`error in GET /user - ${err}`);
         res.redirect('/');
       });
     });
