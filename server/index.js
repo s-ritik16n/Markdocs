@@ -33,8 +33,8 @@ app.get("/authcallback", (req, res) => {
       data: {
         code: code,
         state: state,
-        client_id: process.env.CLIENT_ID || config['CLIENT_ID'],
-        client_secret: process.env.CLIENT_SECRET || config['CLIENT_SECRET']
+        client_id: config['CLIENT_ID'],
+        client_secret: config['CLIENT_SECRET']
       }
     })
     .then(function(response) {
