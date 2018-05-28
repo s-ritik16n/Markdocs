@@ -42,8 +42,8 @@ app.get("/authcallback", (req, res) => {
         method:'GET',
         url:'https://api.github.com/user?access_token='+access_token,
         headers: {'Accept': 'application/json'}
-      }).then((res) => {
-        console.log(`/user - ${res.data.login}`);
+      }).then((response) => {
+        console.log(`/user - ${response.data.login}`);
         res.redirect('/');
       }).catch((err) => {
         console.log(`error in GET /user - ${err}`);
