@@ -45,6 +45,7 @@ app.get("/authcallback", function (req, res) {
   var code = req.query.code;
   var state = req.query.state;
   console.log("here is a log outside axios");
+  console.log(_config2.default);
   try {
     (0, _axios2.default)({
       method: 'post',
@@ -53,8 +54,8 @@ app.get("/authcallback", function (req, res) {
       data: {
         code: code,
         state: state,
-        client_id: _config2.default['CLIENT_ID'],
-        client_secret: _config2.default['CLIENT_SECRET']
+        client_id: _process2.default.env.CLIENT_ID,
+        client_secret: _process2.default.env.CLIENT_SECRET
       }
     }).then(function (response) {
       console.log("here i get the response - then");
