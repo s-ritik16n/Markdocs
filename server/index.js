@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import process from 'process';
 import axios from 'axios';
+import config from './config';
 
 const app = express();
 app.set('port', 8000);
@@ -31,14 +32,17 @@ app.get("/authcallback", (req, res) => {
       headers: {'Accept': 'application/json'},
       data: {
         code: code,
-        state: state
+        state: state,
+        client_id: process.env.CLIENT_ID || config['CLIENT_ID'],
+        client_secret: process.env.CLIENT_SECRET || config['CLIENT_SECRET']
       }
     })
     .then(function(response) {
-      console.log("here i get the response");
+      console.log("here i get the response - then");
       console.log(response.data);
       resolve(response.data);
     }).catch((err) => {
+        console.log("here i get the response - error");
         reject(err);
     });
   }).then((val)=>{
