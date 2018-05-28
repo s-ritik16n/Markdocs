@@ -39,8 +39,17 @@ app.get("/authcallback", (req, res) => {
     })
     .then(function(response) {
       console.log("here i get the response - then");
-      console.log(response.data);
-      res.redirect('/');
+      const access_token = response.data['access_token'];
+      const bearer = response.data['bearer'];
+      axios({
+        method:'GET',
+        url:'https://github.com/user?access_token='+access_token,
+        headers: {'Accept': 'application/json'}
+      }).then((res) => {
+        console.log("i get the user");
+        console.log(res);
+        res.redirect('/');
+      });
     });
   } catch (e) {
       console.log(`error in axios promise - ${e}`);
