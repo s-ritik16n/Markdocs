@@ -25,25 +25,27 @@ app.get("/authcallback", (req, res) => {
   const code = req.query.code;
   const state = req.query.state;
   console.log("here is a log outside axios");
-  axios({
-    method: 'post',
-    url: 'https://github.com/login/oauth/access_token',
-    headers: {'Accept': 'application/json'},
-    data: {
-      code: code,
-      state: state,
-      client_id: process.env.CLIENT_ID || config['CLIENT_ID'],
-      client_secret: process.env.CLIENT_SECRET || config['CLIENT_SECRET']
-    }
-  })
-  .then(function(response) {
-    console.log("here i get the response - then");
-    console.log(response.data);
-    res.redirect('/');
-  }).catch((err) => {
-      console.log("here i get the response - error");
+  try {
+    axios({
+      method: 'post',
+      url: 'https://github.com/login/oauth/access_token',
+      headers: {'Accept': 'application/json'},
+      data: {
+        code: code,
+        state: state,
+        client_id: process.env.CLIENT_ID || config['CLIENT_ID'],
+        client_secret: process.env.CLIENT_SECRET || config['CLIENT_SECRET']
+      }
+    })
+    .then(function(response) {
+      console.log("here i get the response - then");
+      console.log(response.data);
       res.redirect('/');
     });
+  } catch (e) {
+      console.log(`error in axios promise - ${e}`);
+      res.redirect('/');
+  }
 });
 
 app.listen(process.env.PORT || 8000, () => { console.log(`all eyes at ${process.env.PORT || 8000}`); })
