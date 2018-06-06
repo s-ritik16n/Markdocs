@@ -4,14 +4,13 @@ import Toolbar from './Toolbar';
 import Editor from './Editor';
 import Preview from './Preview';
 import Button from './Button';
-import { preview, download, github_login } from '../advanced-utils';
+import { preview, download, githubLogin } from '../advanced-utils';
 import ToggleButton from './ToggleButton';
 import { Button as Btn } from 'react-bootstrap';
 import { FaToggleOff, FaToggleOn } from 'react-icons/lib/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import * as utils from '../utils';
 import { getToast } from '../toast';
-import axios from 'axios';
 
 export default class MarkdocsApp extends React.Component {
   constructor(props) {
@@ -26,7 +25,8 @@ export default class MarkdocsApp extends React.Component {
     showTableModal: false,
     showLinkModal: false,
     showImageModal: false,
-    showClearModal: false
+    showClearModal: false,
+    showRepoModal: false
   }
 
   keyPressed = [];
@@ -38,7 +38,13 @@ export default class MarkdocsApp extends React.Component {
       queryString = queryString.split("&");
       let code = queryString.split("=");
       let state = queryString.split("=");
-      github_login(code[1], state[1]);
+      githubLogin(code[1], state[1], (err)=> {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        this.setState({showRepoModal: true})
+      });
     }
     document.addEventListener("keyup", (event) => this.keyUpEvent(event));
     document.addEventListener("keydown", (event) => this.keyDownEvent(event));
@@ -47,7 +53,6 @@ export default class MarkdocsApp extends React.Component {
   componentDidCatch(error, info) {
     console.log(`error - ${error}`);
     console.log(`info - ${info}`);
-    console.log();
   }
 
   keyUpEvent = (event) => {
