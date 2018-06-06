@@ -13,6 +13,10 @@ import * as utils from '../utils';
 import { getToast } from '../toast';
 
 export default class MarkdocsApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.previewHandler = this.previewHandler.bind(this);
+  }
 
   state = {
     rawData: "",
@@ -26,22 +30,15 @@ export default class MarkdocsApp extends React.Component {
 
   keyPressed = [];
 
-
-  constructor(props) {
-    super(props);
-    console.log(this.props.params);
-    this.previewHandler = this.previewHandler.bind(this);
-  }
-
   componentDidMount () {
     document.addEventListener("keyup", (event) => this.keyUpEvent(event));
     document.addEventListener("keydown", (event) => this.keyDownEvent(event));
   }
 
   componentDidCatch(error, info) {
-    console.log(error);
-    console.log("info -");
-    console.log(info);
+    console.log(`error - ${error}`);
+    console.log(`info - ${info}`);
+    console.log();
   }
 
   keyUpEvent = (event) => {
