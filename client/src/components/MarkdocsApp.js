@@ -4,13 +4,14 @@ import Toolbar from './Toolbar';
 import Editor from './Editor';
 import Preview from './Preview';
 import Button from './Button';
-import { preview, download } from '../advanced-utils';
+import { preview, download, github_login } from '../advanced-utils';
 import ToggleButton from './ToggleButton';
 import { Button as Btn } from 'react-bootstrap';
 import { FaToggleOff, FaToggleOn } from 'react-icons/lib/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import * as utils from '../utils';
 import { getToast } from '../toast';
+import axios from 'axios';
 
 export default class MarkdocsApp extends React.Component {
   constructor(props) {
@@ -31,6 +32,14 @@ export default class MarkdocsApp extends React.Component {
   keyPressed = [];
 
   componentDidMount () {
+    if (this.props.location.search) {
+      let queryString = this.props.location.search;
+      queryString = queryString.substring(1);
+      queryString = queryString.split("&");
+      let code = queryString.split("=");
+      let state = queryString.split("=");
+      github_login(code[1], state[1]);
+    }
     document.addEventListener("keyup", (event) => this.keyUpEvent(event));
     document.addEventListener("keydown", (event) => this.keyDownEvent(event));
   }
