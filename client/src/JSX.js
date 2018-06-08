@@ -7,6 +7,8 @@ export let imageUrlInput;
 export let imageAltTextInput;
 export let tableRowInput;
 export let tableColInput;
+export let repoModalGithubSelect;
+export let repoModalGithubInput;
 
 export const linkModalJSX = (
   <form>
@@ -49,4 +51,24 @@ export const tableModalJSX = (
 
 export const clearModalJSX = (
   <div>Are you sure you wish to clear all data?</div>
+);
+
+export const repoModalGithub = (
+  <FormGroup controlId="repo-modal-github">
+    <FieldGroup
+      id="repoModalGithubInput"
+      type="text"
+      label="Filename"
+      placeholder="Enter Filename"
+      inputRef={inst => {repoModalGithubInput = inst}}
+    />
+  <FormControl inputRef={inst => {repoModalGithubSelect = inst}} componentClass="select" placeholder="select">
+      {
+        this.repos.map((repo, index) => (
+          <option value={index}>{repo}</option>
+        ))
+      }
+      <option value="select">select</option>
+    </FormControl>
+  </FormGroup>
 );

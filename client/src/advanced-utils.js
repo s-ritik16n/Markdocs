@@ -15,4 +15,5 @@ export const githubLogin = (code, state, cb) => {
     cb("Error: code or state not present!!!");
     return;
   }
+  return cb(null, repos);
 }

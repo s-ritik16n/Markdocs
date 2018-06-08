@@ -29,7 +29,9 @@ export default class MarkdocsApp extends React.Component {
     showRepoModal: false
   }
 
-  keyPressed = [];
+  keyPressed      = [];
+  repoModalJSX    = jsx.repoModalGithub;
+  repos;
 
   componentDidMount () {
     if (this.props.location.search) {
@@ -38,12 +40,13 @@ export default class MarkdocsApp extends React.Component {
       queryString = queryString.split("&");
       let code = queryString.split("=");
       let state = queryString.split("=");
-      githubLogin(code[1], state[1], (err)=> {
+      githubLogin(code[1], state[1], (err, repos)=> {
         if (err) {
           console.log(err);
           return;
         }
-        this.setState({showRepoModal: true})
+        this.repos = repos;
+        this.setState({showRepoModal: true});
       });
     }
     document.addEventListener("keyup", (event) => this.keyUpEvent(event));
@@ -113,6 +116,9 @@ export default class MarkdocsApp extends React.Component {
   }
 
   render = () => {
+
+    let repoModalClose = () => this.setState({showRepoModal: false});
+
     return (
       <div className="container-fluid">
         <div>
@@ -123,6 +129,17 @@ export default class MarkdocsApp extends React.Component {
         <Editor showPreview={this.state.showPreview} data={this.state.rawData} handleChangeEvent={this.textHandler}/>
         <Preview hide={this.state.showPreview} id="preview" value={this.state.parsedData}/>
         <Btn href="https://github.com/login/oauth/authorize?client_id=b5422eace97554dec4b5&state=e72e16c7e42f292c6912e7710c838347ae178b4">Upload to github</Btn>
+        <ModalComponent
+          toolTip="Select Repo"
+          buttonText="Submit"
+          callback={this.chooseRepoGithub}
+          handleClick={this.repoModalGithubListener}
+          show={this.state.showRepoModal}
+          onHide={repoModalClose}
+          id="repo-modal"
+          title="Select Repository"
+          body={this.repoModalJSX}
+          />
       </div>
     );
   }
