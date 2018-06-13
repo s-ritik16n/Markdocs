@@ -4,7 +4,7 @@ import Toolbar from './Toolbar';
 import Editor from './Editor';
 import Preview from './Preview';
 import Button from './Button';
-import { preview, download, githubLogin } from '../advanced-utils';
+import { preview, download, githubLogin, githubUpload } from '../advanced-utils';
 import ToggleButton from './ToggleButton';
 import { Button as Btn } from 'react-bootstrap';
 import { FaToggleOff, FaToggleOn } from 'react-icons/lib/fa';
@@ -31,6 +31,8 @@ export default class MarkdocsApp extends React.Component {
 
   keyPressed      = [];
   repoModalJSX    = jsx.repoModalGithub;
+  repoModalGithubInput = jsx.repoModalGithubInput;
+  repoModalGithubSelect = jsx.repoModalGithubSelect;
   repos;
 
   componentDidMount () {
@@ -103,7 +105,6 @@ export default class MarkdocsApp extends React.Component {
   }
 
   previewHandler = (event, data) => {
-
     event.preventDefault();
     this.setState((prevState) => {
       return {
@@ -114,6 +115,8 @@ export default class MarkdocsApp extends React.Component {
       };
     });
   }
+
+  repoModalGithubListener
 
   render = () => {
 
@@ -131,14 +134,15 @@ export default class MarkdocsApp extends React.Component {
         <Btn href="https://github.com/login/oauth/authorize?client_id=b5422eace97554dec4b5&state=e72e16c7e42f292c6912e7710c838347ae178b4">Upload to github</Btn>
         <ModalComponent
           toolTip="Select Repo"
-          buttonText="Submit"
-          callback={this.chooseRepoGithub}
+          buttonText="Upload"
+          callback={githubUpload}
           handleClick={this.repoModalGithubListener}
           show={this.state.showRepoModal}
           onHide={repoModalClose}
           id="repo-modal"
           title="Select Repository"
           body={this.repoModalJSX}
+          data={'file': this.repoModalGithubInput, 'repo': this.repoModalGithubSelect}
           />
       </div>
     );

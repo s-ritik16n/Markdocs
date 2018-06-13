@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, FieldGroup } from 'react-bootstrap';
 
 export let linkTextInput;
 export let linkUrlInput;
