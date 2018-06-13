@@ -26,7 +26,7 @@ app.post("/getrepos_github", (req, res) => {
   const state = req.body.state;
   try {
     axios({
-      method: 'post',
+      method: 'POST',
       url: 'https://github.com/login/oauth/access_token',
       headers: {'Accept': 'application/json'},
       data: {
@@ -45,7 +45,7 @@ app.post("/getrepos_github", (req, res) => {
       }).then((response) => {
         console.log(`/user - ${response.data.login}`);
         axios({
-          method: 'post',
+          method: 'POST',
           url: `https://api.github.com/users/${response.data.login}/repos?access_token=`+access_token,
           headers: {'Accept': 'application/json'}
         })

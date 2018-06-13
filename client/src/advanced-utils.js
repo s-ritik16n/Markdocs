@@ -15,6 +15,7 @@ export const githubLogin = (code, state, cb) => {
 
   console.log("called githubLogin");
   if (!code || !state) {
+    console.log("Error: code or state not present!!!");
     cb("Error: code or state not present!!!");
     return;
   }

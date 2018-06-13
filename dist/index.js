@@ -41,12 +41,12 @@ app.get("/", function (req, res) {
   res.sendFile(_path2.default.join(__dirname, 'public', 'index.html'));
 });
 
-app.get("/authcallback", function (req, res) {
+app.post("/getrepos_github", function (req, res) {
   var code = req.body.code;
   var state = req.body.state;
   try {
     (0, _axios2.default)({
-      method: 'post',
+      method: 'POST',
       url: 'https://github.com/login/oauth/access_token',
       headers: { 'Accept': 'application/json' },
       data: {
@@ -64,7 +64,7 @@ app.get("/authcallback", function (req, res) {
       }).then(function (response) {
         console.log('/user - ' + response.data.login);
         (0, _axios2.default)({
-          method: 'post',
+          method: 'POST',
           url: 'https://api.github.com/users/' + response.data.login + '/repos?access_token=' + access_token,
           headers: { 'Accept': 'application/json' }
         }).then(function (res) {

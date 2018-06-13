@@ -11,6 +11,7 @@ import { FaToggleOff, FaToggleOn } from 'react-icons/lib/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import * as utils from '../utils';
 import { getToast } from '../toast';
+import { repoModalGithubJSX, repoModalGithubInput, repoModalGithubSelect } from '../JSX';
 
 export default class MarkdocsApp extends React.Component {
   constructor(props) {
@@ -29,20 +30,21 @@ export default class MarkdocsApp extends React.Component {
     showRepoModal: false
   }
 
-  keyPressed      = [];
-  repoModalJSX    = jsx.repoModalGithub;
-  repoModalGithubInput = jsx.repoModalGithubInput;
-  repoModalGithubSelect = jsx.repoModalGithubSelect;
+  keyPressed            = [];
+  repoModalGithubJSX    = repoModalGithubJSX;
+  repoModalGithubInput  = repoModalGithubInput;
+  repoModalGithubSelect = repoModalGithubSelect;
   repos;
 
   componentDidMount () {
     if (this.props.location.search) {
-      console.log("response coming from github");
+      console.log("response from github");
+      console.log(this.props.location.search);
       let queryString = this.props.location.search;
       queryString = queryString.substring(1);
       queryString = queryString.split("&");
-      let code = queryString.split("=");
-      let state = queryString.split("=");
+      let code = queryString[0].split("=");
+      let state = queryString[1].split("=");
       githubLogin(code[1], state[1], (err, repos)=> {
         if (err) {
           console.log(err);
@@ -143,7 +145,7 @@ export default class MarkdocsApp extends React.Component {
           onHide={repoModalClose}
           id="repo-modal"
           title="Select Repository"
-          body={this.repoModalJSX}
+          body={this.repoModalGithubJSX}
           data={{'file': this.repoModalGithubInput, 'repo': this.repoModalGithubSelect}}
           />
         }

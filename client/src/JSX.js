@@ -54,7 +54,7 @@ export const clearModalJSX = (
   <div>Are you sure you wish to clear all data?</div>
 );
 
-export const repoModalGithub = (
+export const repoModalGithubJSX = (
   <FormGroup controlId="repo-modal-github">
     <FieldGroup
       id="repoModalGithubInput"
