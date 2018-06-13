@@ -50,24 +50,29 @@ app.post("/getrepos_github", (req, res) => {
           headers: {'Accept': 'application/json'}
         })
         .then((res) => {
-          res.json({'success': true, 'res': res});
-          res.end();
+          res.json({'success': true, 'res': res}).end();
           return;
         })
         .catch((err) => {
           console.log(`error in POST /user/${response.data.login}/repos`);
-          res.json({'success': false});
-          res.end();
+          res.json({'success': false}).end();
+          return;
         })
       }).catch((err) => {
         console.log(`error in GET /user - ${err}`);
-        res.json({'success': false});
-        res.end();
+        res.json({'success': false}).end();
+        return;
       });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({success: false}).end();
+      return;
     });
   } catch (e) {
       console.log(`error in axios promise - ${e}`);
-      res.redirect('/');
+      res.json({success: false}).end();
+      return;
   }
 });
 
