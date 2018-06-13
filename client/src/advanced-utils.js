@@ -21,7 +21,7 @@ export const githubLogin = (code, state, cb) => {
   try {
     axios({
       method: 'post',
-      url:'/authcallback',
+      url:'/getrepos_github',
       headers: {"Accept": "application/json"},
       data: {
         code: code,
