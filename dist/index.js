@@ -42,8 +42,8 @@ app.get("/", function (req, res) {
 });
 
 app.get("/authcallback", function (req, res) {
-  var code = req.query.code;
-  var state = req.query.state;
+  var code = req.body.code;
+  var state = req.body.state;
   try {
     (0, _axios2.default)({
       method: 'post',
@@ -63,10 +63,23 @@ app.get("/authcallback", function (req, res) {
         headers: { 'Accept': 'application/json' }
       }).then(function (response) {
         console.log('/user - ' + response.data.login);
-        res.redirect('/');
+        (0, _axios2.default)({
+          method: 'post',
+          url: 'https://api.github.com/users/' + response.data.login + '/repos?access_token=' + access_token,
+          headers: { 'Accept': 'application/json' }
+        }).then(function (res) {
+          res.json({ 'success': true, 'res': res });
+          res.end();
+          return;
+        }).catch(function (err) {
+          console.log('error in POST /user/' + response.data.login + '/repos');
+          res.json({ 'success': false });
+          res.end();
+        });
       }).catch(function (err) {
         console.log('error in GET /user - ' + err);
-        res.redirect('/');
+        res.json({ 'success': false });
+        res.end();
       });
     });
   } catch (e) {

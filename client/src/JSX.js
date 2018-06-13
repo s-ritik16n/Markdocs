@@ -9,6 +9,7 @@ export let tableRowInput;
 export let tableColInput;
 export let repoModalGithubSelect;
 export let repoModalGithubInput;
+export let repos;
 
 export const linkModalJSX = (
   <form>
@@ -64,7 +65,8 @@ export const repoModalGithub = (
     />
   <FormControl inputRef={inst => {repoModalGithubSelect = inst}} componentClass="select" placeholder="select">
       {
-        this.repos.map((repo, index) => (
+        repos &&
+        repos.map((repo, index) => (
           <option value={index}>{repo}</option>
         ))
       }

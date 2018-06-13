@@ -37,6 +37,7 @@ export default class MarkdocsApp extends React.Component {
 
   componentDidMount () {
     if (this.props.location.search) {
+      console.log("response coming from github");
       let queryString = this.props.location.search;
       queryString = queryString.substring(1);
       queryString = queryString.split("&");
@@ -132,6 +133,7 @@ export default class MarkdocsApp extends React.Component {
         <Editor showPreview={this.state.showPreview} data={this.state.rawData} handleChangeEvent={this.textHandler}/>
         <Preview hide={this.state.showPreview} id="preview" value={this.state.parsedData}/>
         <Btn href="https://github.com/login/oauth/authorize?client_id=b5422eace97554dec4b5&state=e72e16c7e42f292c6912e7710c838347ae178b4">Upload to github</Btn>
+        {this.state.showRepoModal &&
         <ModalComponent
           toolTip="Select Repo"
           buttonText="Upload"
@@ -142,8 +144,9 @@ export default class MarkdocsApp extends React.Component {
           id="repo-modal"
           title="Select Repository"
           body={this.repoModalJSX}
-          data={'file': this.repoModalGithubInput, 'repo': this.repoModalGithubSelect}
+          data={{'file': this.repoModalGithubInput, 'repo': this.repoModalGithubSelect}}
           />
+        }
       </div>
     );
   }
