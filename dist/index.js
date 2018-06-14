@@ -68,23 +68,27 @@ app.post("/getrepos_github", function (req, res) {
           url: 'https://api.github.com/users/' + response.data.login + '/repos?access_token=' + access_token,
           headers: { 'Accept': 'application/json' }
         }).then(function (res) {
-          res.json({ 'success': true, 'res': res });
-          res.end();
+          res.json({ 'success': true, 'res': res }).end();
           return;
         }).catch(function (err) {
           console.log('error in POST /user/' + response.data.login + '/repos');
-          res.json({ 'success': false });
-          res.end();
+          res.json({ 'success': false }).end();
+          return;
         });
       }).catch(function (err) {
         console.log('error in GET /user - ' + err);
-        res.json({ 'success': false });
-        res.end();
+        res.json({ 'success': false }).end();
+        return;
       });
+    }).catch(function (err) {
+      console.log(err);
+      res.json({ success: false }).end();
+      return;
     });
   } catch (e) {
     console.log('error in axios promise - ' + e);
-    res.redirect('/');
+    res.json({ success: false }).end();
+    return;
   }
 });
 
