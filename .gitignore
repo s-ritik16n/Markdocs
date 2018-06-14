@@ -10,6 +10,7 @@
 /build
 
 server/config.js
+dist/config.js
 
 # misc
 .DS_Store

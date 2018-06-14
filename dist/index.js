@@ -22,8 +22,6 @@ var _axios2 = _interopRequireDefault(_axios);
 
 var _config = require('./config');
 
-var _config2 = _interopRequireDefault(_config);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
@@ -48,12 +46,13 @@ app.post("/getrepos_github", function (req, res) {
     (0, _axios2.default)({
       method: 'POST',
       url: 'https://github.com/login/oauth/access_token',
+      strictSSL: true,
       headers: { 'Accept': 'application/json' },
       data: {
         code: code,
         state: state,
-        client_id: _process2.default.env.CLIENT_ID,
-        client_secret: _process2.default.env.CLIENT_SECRET
+        client_id: _process2.default.env.CLIENT_ID || _config.config.CLIENT_ID,
+        client_secret: _process2.default.env.CLIENT_SECRET || _config.config.CLIENT_SECRET
       }
     }).then(function (response) {
       var access_token = response.data['access_token'];

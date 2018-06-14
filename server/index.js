@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import process from 'process';
 import axios from 'axios';
-import config from './config';
+import { config } from './config';
 
 const app = express();
 app.set('port', 8000);
@@ -32,8 +32,8 @@ app.post("/getrepos_github", (req, res) => {
       data: {
         code: code,
         state: state,
-        client_id: process.env.CLIENT_ID,
-        client_secret: process.env.CLIENT_SECRET
+        client_id: process.env.CLIENT_ID || config.CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET || config.CLIENT_SECRET
       }
     })
     .then(function(response) {
